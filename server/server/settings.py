@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'users',  # Your custom user app
+    'dashboard',
+    'sentiment',
 ]
 
 MIDDLEWARE = [

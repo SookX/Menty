@@ -6,12 +6,14 @@ from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import CustomUser
 from django.shortcuts import get_object_or_404
+from dashboard.models import Dashboard
 
 @api_view(['POST'])
 def register(request):
     
     """
     Registers a new user with the provided email, username, and password.
+    And create dashboard related to the user.
 
     Args:
     - request (Request): The incoming HTTP request containing user registration data.
@@ -32,6 +34,8 @@ def register(request):
 
     user = CustomUser(email=email, username=username, password=make_password(password))
     user.save()
+
+    Dashboard.objects.create(user=user)
 
     return Response({'message': 'User created successfully'}, status=status.HTTP_201_CREATED)
 
