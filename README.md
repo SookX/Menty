@@ -20,7 +20,6 @@
 -->
 [![Contributors][contributors-shield]][contributors-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 
@@ -191,8 +190,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [contributors-url]: https://github.com/SookX/Menty/graphs/contributors
 [license-shield]: https://img.shields.io/github/license/SookX/Menty.svg?style=for-the-badge
 [license-url]: https://github.com/SookX/Menty/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
