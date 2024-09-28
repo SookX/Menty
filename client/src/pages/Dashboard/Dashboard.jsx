@@ -85,21 +85,28 @@ const Dashboard = () => {
     return (
         !loading &&
         <section className="full-section dashboard">
-            <div className="dashboard-textbox">
-                <h3>{user.username}</h3>
-                <p>{user.email}</p>
+            <div className="dashboard-left">
+                <div className="dashboard-textbox">
+                    <h3 className='dashboard-title'>{user.username}</h3>
+                    <p className='dashboard-email'>{user.email}</p>
+                    <p className='dashboard-text'>Welcome to your dashboard! Here you can find your mental health progress as well as your daily tips for improvement.</p>
+                </div>
+
+                <LineChart data={score} />
             </div>
 
-            <LineChart data={score} />
+            <div className="dashboard-right">
+                <h5>How are you feeling today?</h5>
+                <p>Tell us about your day. How are you feeling?</p>
 
-            <Input
-                value={prompt}
-                setValue={setPrompt}
-                label="Tell us how you're feeling"
-                type="textarea"
-            />
+                <Input
+                    value={prompt}
+                    setValue={setPrompt}
+                    type="textarea"
+                />
 
-            <button className="btn" onClick={handleSubmitSentiment}>Submit</button>
+                <button className="btn" onClick={handleSubmitSentiment}>Submit</button>
+            </div>
 
         </section>
     )

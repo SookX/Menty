@@ -2,10 +2,43 @@
 
 .dashboard {
     padding: 12.8rem @1colIn;
+    display: grid;
+    grid-template-columns: 5fr 3fr;
+    gap: 6.4rem;
+    align-items: end;
+
+    .dashboard-textbox {
+        margin-bottom: 3.2rem;
+
+        .dashboard-email {
+            text-transform: uppercase;
+            font-weight: bold;
+            color: @secondary-500;
+            margin-bottom: 1.2rem;
+        }
+
+        .dashboard-text {
+            color: @neutral-500;
+        }
+    }
+
+    .dashboard-right {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+
+        .input textarea {
+            flex-grow: 1;
+            padding: 1.6rem;
+            background-color: transparent;
+            height: 16rem;
+        }
+    }
 }
 
 .chart-container {
     border: solid 0.1rem @primary-500;
     border-radius: 1rem;
     padding: 3.2rem;
+    width: 100%;
 }

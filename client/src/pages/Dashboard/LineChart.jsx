@@ -4,15 +4,18 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
 const LineChart = ({ data }) => {
+    const min = Math.round(Math.min(data) / 10) * 10
+    const max = Math.ceil(Math.max(data) / 10) * 10
+
     const canvasData = {
       datasets: [
         {
-          borderColor: "red",
+          borderColor: "#452D55",
           pointRadius: 3,
           fill: false,
           lineTension: 0.1,
           data: data,
-          borderWidth: 1,
+          borderWidth: 2,
         },
       ],
     };
@@ -36,11 +39,11 @@ const LineChart = ({ data }) => {
           grid: {
             display: true,
           },
-          min: Math.min(data) - 1,
-          max: Math.max(data) + 1,
+          min: min,
+          max: max,
           ticks: {
-            stepSize: 1,
-            color: "green",
+            stepSize: (max - min) / 6,
+            color: "#452D55",
             font: {
               family: "Nunito",
               size: 12,
