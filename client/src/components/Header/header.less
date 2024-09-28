@@ -1,0 +1,35 @@
+@import '../../globalStyling/variables.less';
+
+.header {
+    padding: 1.2rem @0colIn;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .nav-logo {
+        width: 12.8rem;
+        cursor: pointer;
+        margin-right: 2.4rem;
+    }
+    
+    .nav {
+        display: flex;
+        align-items: center;
+        font-size: @p1;
+        gap: 1.2rem;
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: bold;
+            transition: .2s;
+    
+            &:hover {
+                color: @secondary-600;
+            }
+        }
+    }
+}

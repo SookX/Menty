@@ -17,7 +17,7 @@ const About = () => {
     ]
 
     return (
-        <section className="about">
+        <section className="full-section about" id='about'>
             <div className="about-text-box">
                 <h2>How it works</h2>
                 
