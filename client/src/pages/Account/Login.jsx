@@ -58,7 +58,7 @@ const Login = () => {
         <section className="full-section account">
             <div className="account-form-container">
                 <div className="account-form-textbox">
-                    <h4 className="account-title">Make an account</h4>
+                    <h4 className="account-title">Log in to your account</h4>
 
                     {
                         error &&

@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 export const DataContext = createContext({})
 
 const DataProvider = ({ children }) => {
+    // Holds the prompt to the AI
+    const [prompt, setPrompt] = useState('')
+
+
 
     // Boolean for weather the layout grid is shown or not
     const [grid, setGrid] = useState(true)
@@ -59,7 +63,8 @@ const DataProvider = ({ children }) => {
                 grid, setGrid,
                 crud,
                 navigate,
-                setAccess, setRefresh
+                setAccess, setRefresh,
+                prompt, setPrompt
             }}>
 
             {children}
