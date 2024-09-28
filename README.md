@@ -28,10 +28,9 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <! -- <img src="images/logo.png"  width="80" height="80">
+     <img src="https://i.ibb.co/CmxNSsp/logo.png"  width="240" height="87">
   </a>
 
-  <h1 align="center">Minty</h1>
 
   <p align="center">
     <br />
