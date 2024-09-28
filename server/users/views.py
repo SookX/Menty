@@ -66,3 +66,10 @@ def user_details(request, id):
     if request.method == 'DELETE':
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+@api_view(['GET'])
+def user(request):
+
+    if request.method == 'GET':
+        data = CustomUser.objects.values('id', 'last_login', 'email', 'username', 'createdAt')
+        return Response(list(data))
