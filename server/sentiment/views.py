@@ -12,6 +12,7 @@ from sentiment.models import Sentiment
 url = ""
 
 @api_view(['POST', 'GET'])
+@permission_classes([IsAuthenticated])
 def sentiment(request, dashboardId):
     
     """

@@ -7,6 +7,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .models import CustomUser
 from django.shortcuts import get_object_or_404
 from dashboard.models import Dashboard
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
+
 
 @api_view(['POST'])
 def register(request):
@@ -70,6 +73,7 @@ def login(request):
     }, status=status.HTTP_200_OK)
 
 @api_view(['GET', 'PATCH', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def user_details(request, id):
 
     """
@@ -106,6 +110,7 @@ def user_details(request, id):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def user(request):
 
     """
