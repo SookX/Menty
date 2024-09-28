@@ -2,6 +2,10 @@ from tensorflow.keras.layers import TextVectorization
 import random
 import pandas as pd 
 import numpy as np
+from sklearn.preprocessing import OneHotEncoder
+
+
+
 
 
 def train_tokenizer(train_data, max_tokens, output_sequence_length):
@@ -11,7 +15,7 @@ def train_tokenizer(train_data, max_tokens, output_sequence_length):
 
     Parameters:
     - train_data: An iterable of text strings used for training the tokenizer.
-    - max_tokens: The maximum number of tokens to consider.
+    - max_tokens: The maximum number of tokens to consider. (Vocab size)
     - output_sequence_length: The length of the output sequences.
 
     Returns:
@@ -57,7 +61,30 @@ def stack_samples(text_data, text_vectorizer):
 
     text_data_array = np.array(text_data)
     text_data_expanded = np.expand_dims(text_data_array, axis=1)
+    
     vectorized_data = text_vectorizer(text_data_expanded)
     vectorized_data_array = np.array(vectorized_data)
     return vectorized_data_array
     
+
+
+
+
+def preprocess_data(X, y):
+    y = np.expand_dims(y, axis = 1)
+    encoder = OneHotEncoder(sparse_output=False)
+    y_one_hot_encoded = encoder.fit_transform(y)
+    classes = encoder.categories_[0]
+    X_samples = X.tolist()
+
+    MAX_TOKENS = 10000
+    OUTPUT_SEQ_LENGTH = 3000
+
+    vectorizer = train_tokenizer(X_samples, MAX_TOKENS, OUTPUT_SEQ_LENGTH)
+    X_samples_final = stack_samples(X_samples, vectorizer)
+    return X_samples_final, y_one_hot_encoded, classes
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
