@@ -70,21 +70,4 @@ def stack_samples(text_data, text_vectorizer):
 
 
 
-def preprocess_data(X, y):
-    y = np.expand_dims(y, axis = 1)
-    encoder = OneHotEncoder(sparse_output=False)
-    y_one_hot_encoded = encoder.fit_transform(y)
-    classes = encoder.categories_[0]
-    X_samples = X.tolist()
-
-    MAX_TOKENS = 10000
-    OUTPUT_SEQ_LENGTH = 3000
-
-    vectorizer = train_tokenizer(X_samples, MAX_TOKENS, OUTPUT_SEQ_LENGTH)
-    X_samples_final = stack_samples(X_samples, vectorizer)
-    return X_samples_final, y_one_hot_encoded, classes
-
-
-import numpy as np
-import matplotlib.pyplot as plt
 

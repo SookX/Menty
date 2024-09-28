@@ -1,0 +1,8 @@
+numpy
+pandas
+fastapi
+scikit-learn==1.4.0
+tensorflow==2.10.1
+matplotlib
+uvicorn
+python-multipart
