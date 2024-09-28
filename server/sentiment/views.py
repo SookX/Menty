@@ -63,7 +63,6 @@ def sentiment(request):
 
             data = response.json()
             Predicted_Class = data.get('Predicted Class')
-            # score = data.get('score')
 
             try:
                 dashboard = Dashboard.objects.get(user=user)
@@ -84,8 +83,6 @@ def sentiment(request):
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     if request.method == 'GET':
-        
-        # dashboard = get_object_or_404(Dashboard, id = dashboardId)
 
         dashboard = get_object_or_404(Dashboard, user = user)
 
