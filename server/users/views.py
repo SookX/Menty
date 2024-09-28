@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import CustomUser
+from django.shortcuts import get_object_or_404
 
 @api_view(['POST'])
 def register(request):
@@ -41,3 +42,27 @@ def login(request):
         'refresh': str(refresh),
         'access': str(refresh.access_token),
     }, status=status.HTTP_200_OK)
+
+@api_view(['GET', 'PATCH', 'DELETE'])
+def user_details(request, id):
+
+    user = get_object_or_404(CustomUser, id=id)
+
+    if request.method == 'GET':
+        data = {
+            'email': user.email,
+            'username': user.username
+        }
+        return Response(data)
+    
+    if request.method == 'PATCH':
+        username = request.data.get('username', None)
+        if username:
+            user.username = username
+            user.save()
+            return Response({'username': user.username})
+        return Response({'error': 'Username not provided'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    if request.method == 'DELETE':
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
