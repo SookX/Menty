@@ -4,9 +4,11 @@ export const DataContext = createContext({})
 
 const DataProvider = ({ children }) => {
 
+    const [grid, setGrid] = useState(true)
+
     return (
         <DataContext.Provider value={{
-
+                grid, setGrid
             }}>
 
             {children}

@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+:root {
+
+  /* LAYOUT GRID PROPERTIES */
+  --grid-padding: 6.4rem;
+  --grid-gutter: 2.4rem;
+  --grid-columns: 12;
+  --grid-column-width: calc(calc(100vw - calc(calc(var(--grid-columns) - 1) * var(--grid-gutter)) - calc(var(--grid-padding) * 2)) / var(--grid-columns));
+}
+
+
+
+/* LAYOUT GRID */
+.layout-grid {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  gap: var(--grid-gutter);
+  padding: 0 var(--grid-padding);
+
+  pointer-events: none;
+}
+
+.layout-grid.hidden .grid-column {
+  display: none;
+}
+
+.grid-btn {
+  position: fixed;
+  bottom: 3.2rem;
+  right: 6.4rem;
+
+  opacity: 0;
+
+  z-index: 100;
+}
+
+.grid-btn:hover {
+  opacity: 1;
+}
+
+.grid-column {
+  width: 100%;
+}
