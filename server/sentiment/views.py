@@ -11,6 +11,25 @@ url = ""
 @api_view(['POST'])
 def santiment(request, dashboardId):
     
+    """
+    Creates a new sentiment entry associated with a specified dashboard.
+
+    This view is accessed via a POST request. It requires the user to provide an emotion,
+    which will be stored as part of the sentiment entry. The endpoint expects a valid 
+    dashboard ID in the URL and checks for the existence of the corresponding dashboard.
+
+    Args:
+        request (Request): The incoming HTTP request containing the emotion data.
+        dashboardId (int): The ID of the dashboard to which the sentiment is linked.
+
+    Returns:
+        Response: A JSON response containing a success message and the ID of the newly created sentiment.
+                  The response will have a status code of 201 (Created) if the sentiment is created successfully.
+                  If the emotion is missing, the response will return a 400 (Bad Request) error with an error message.
+                  If the specified dashboard does not exist, a 404 (Not Found) error will be returned.
+    """
+
+    
     if request.method == 'POST':
         emotion = request.data.get('emotion')
         if not emotion:
