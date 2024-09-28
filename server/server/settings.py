@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'users',  # Your custom user app
     'dashboard',
+    'sentiment',
 ]
 
 MIDDLEWARE = [
