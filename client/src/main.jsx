@@ -5,7 +5,5 @@ import './index.less'
 import './globalStyling/components.less'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <App />
-  </StrictMode>,
 )

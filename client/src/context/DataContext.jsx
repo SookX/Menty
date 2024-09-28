@@ -11,7 +11,7 @@ const DataProvider = ({ children }) => {
 
 
     // Boolean for weather the layout grid is shown or not
-    const [grid, setGrid] = useState(true)
+    const [grid, setGrid] = useState(false)
 
 
 

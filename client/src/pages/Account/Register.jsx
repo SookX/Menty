@@ -11,7 +11,7 @@ const Register = () => {
 
     // Checks if the user is already logged in
     useEffect(() => {
-        if(localStorage.getItem('access')) navigate('/')
+        if(localStorage.getItem('access')) navigate('/dashboard')
     }, [])
 
 
