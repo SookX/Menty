@@ -1,5 +1,6 @@
 @import '../../globalStyling/variables.less';
 
+
 .hero {
     text-align: center;
 
@@ -32,5 +33,83 @@
 
     .btn {
         width: @heroInput;
+    }
+}
+
+
+.about {
+    background-color: @primary-100;
+    padding: 12.8rem @0colIn;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2.4rem;
+    align-items: center;
+    justify-items: center;
+
+    .about-text-box {
+        justify-self: left;
+
+        h2 {
+            margin-bottom: 0.4rem;
+        }
+
+    }
+
+    .about-paragpraph-box {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        margin-bottom: 3.2rem;
+    }
+
+    .about-card-box {
+        display: flex;
+        text-align: center;
+        gap: 2.4rem;
+        margin: 3.2rem 0;
+        margin-bottom: 2.4rem;
+
+        .about-card {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            padding: 3.2rem;
+            border-radius: 1rem;
+            transition: .2s;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+
+            .about-card-text {
+                font-size: @p2;
+            }
+
+            &.yellow {
+                background-color: @secondary-400;
+                .about-card-heading {
+                    color: @secondary-800;
+                }
+                .about-card-text {
+                    color: @secondary-700;
+                }
+            }
+
+            &.purple {
+                background-color: @primary-300;
+                .about-card-text {
+                    color: @primary-700;
+                }
+            }
+        }
+
+    }
+
+    .btn {
+        margin-top: 3.2rem;
+    }
+
+    img {
+        width: 32rem;
     }
 }
