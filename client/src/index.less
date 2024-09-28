@@ -1,3 +1,5 @@
+@import "./globalStyling/variables.less";
+
 * {
   margin: 0;
   padding: 0;
@@ -8,15 +10,13 @@ html {
   font-size: 62.5%;
 }
 
-:root {
 
-  /* LAYOUT GRID PROPERTIES */
+:root {
   --grid-padding: 6.4rem;
   --grid-gutter: 2.4rem;
   --grid-columns: 12;
   --grid-column-width: calc(calc(100vw - calc(calc(var(--grid-columns) - 1) * var(--grid-gutter)) - calc(var(--grid-padding) * 2)) / var(--grid-columns));
 }
-
 
 
 /* LAYOUT GRID */
