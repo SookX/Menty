@@ -5,28 +5,51 @@ from rest_framework import status
 from .models import Dashboard
 import requests
 from .models import Sentiment
+from django.shortcuts import get_object_or_404
+from users.models import CustomUser
+from sentiment.models import Sentiment
 
 url = ""
 
-@api_view(['POST'])
-def santiment(request, dashboardId):
+@api_view(['POST', 'GET'])
+def sentiment(request, dashboardId):
     
     """
-    Creates a new sentiment entry associated with a specified dashboard.
+    Handles sentiment entries associated with a specific dashboard.
 
-    This view is accessed via a POST request. It requires the user to provide an emotion,
-    which will be stored as part of the sentiment entry. The endpoint expects a valid 
-    dashboard ID in the URL and checks for the existence of the corresponding dashboard.
+    This view allows users to either create a new sentiment entry or retrieve 
+    user information and associated sentiments for a specified dashboard.
+
+    For a POST request, the user must provide an `emotion` which will be stored 
+    as part of the sentiment entry. The view verifies the existence of the 
+    dashboard with the given ID before creating a new sentiment. The response 
+    will include a success message and the ID of the newly created sentiment 
+    if the operation is successful.
+
+    For a GET request, the view retrieves user information related to the 
+    specified dashboard and all sentiments linked to that dashboard. The 
+    response will return the user data and a list of associated sentiments.
 
     Args:
-        request (Request): The incoming HTTP request containing the emotion data.
-        dashboardId (int): The ID of the dashboard to which the sentiment is linked.
+        request (Request): The incoming HTTP request containing either 
+                           the emotion data (for POST) or requesting 
+                           information (for GET).
+        dashboardId (int): The ID of the dashboard to which the sentiment 
+                           is linked.
 
     Returns:
-        Response: A JSON response containing a success message and the ID of the newly created sentiment.
-                  The response will have a status code of 201 (Created) if the sentiment is created successfully.
-                  If the emotion is missing, the response will return a 400 (Bad Request) error with an error message.
-                  If the specified dashboard does not exist, a 404 (Not Found) error will be returned.
+        Response: A JSON response containing:
+            - For POST:
+                - A success message and the ID of the newly created sentiment 
+                  with a status code of 201 (Created) upon successful creation.
+                - A 400 (Bad Request) error with an error message if the 
+                  required emotion is missing.
+                - A 404 (Not Found) error if the specified dashboard does not 
+                  exist.
+            - For GET:
+                - A JSON object containing user information and a list of 
+                  sentiments linked to the specified dashboard with a status 
+                  code of 200 (OK).
     """
 
     
@@ -62,3 +85,18 @@ def santiment(request, dashboardId):
 
         # except requests.RequestException as e:
         #     return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    if request.method == 'GET':
+        
+        dashboard = get_object_or_404(Dashboard, id = dashboardId)
+
+        user_data = CustomUser.objects.filter(id=dashboard.user.id).values('id', 'email', 'username', 'createdAt').first()
+
+        sentiments = Sentiment.objects.filter(dashboard=dashboard).values('emotion', 'prediction', 'score', 'date')
+
+        response_data = {
+            "user": user_data,
+            "sentiments": list(sentiments)
+        }
+
+        return Response(response_data, status=status.HTTP_200_OK)
