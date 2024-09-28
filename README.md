@@ -20,7 +20,6 @@
 -->
 [![Contributors][contributors-shield]][contributors-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 
@@ -28,10 +27,9 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <! -- <img src="images/logo.png"  width="80" height="80">
+     <img src="https://i.ibb.co/CmxNSsp/logo.png"  width="240" height="87">
   </a>
 
-  <h1 align="center">Minty</h1>
 
   <p align="center">
     <br />
@@ -192,8 +190,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [contributors-url]: https://github.com/SookX/Menty/graphs/contributors
 [license-shield]: https://img.shields.io/github/license/SookX/Menty.svg?style=for-the-badge
 [license-url]: https://github.com/SookX/Menty/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
