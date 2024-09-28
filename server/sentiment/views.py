@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from users.models import CustomUser
 from sentiment.models import Sentiment
 
-url = ""
+url = "https://sentimentmodel-v1-0.onrender.com/predict/"
 
 @api_view(['POST', 'GET'])
 @permission_classes([IsAuthenticated])
@@ -58,34 +58,30 @@ def sentiment(request):
         emotion = request.data.get('emotion')
         if not emotion:
             return Response({"error": "Emotion is required."}, status=status.HTTP_400_BAD_REQUEST)
-        # try:
-        #     response = requests.post(url, json={'emotion': emotion})
-
-        #     if response.status_code == 200:
-        #         data = response.json()
-        #         prediction = data.get('prediction')
-        #         score = data.get('score')
-
         try:
-            dashboard = Dashboard.objects.get(user=user)
+            response = requests.post(url, json={'text': emotion})
 
-            sentiment = Sentiment.objects.create(
-                dashboard=dashboard,
-                emotion=emotion,
-                prediction="Anxiety",
-                score=1
-            )
+            data = response.json()
+            Predicted_Class = data.get('Predicted Class')
+            # score = data.get('score')
 
-            return Response({"message": "Sentiment created successfully.", "sentiment_id": sentiment.id}, status=status.HTTP_201_CREATED)
+            try:
+                dashboard = Dashboard.objects.get(user=user)
 
-        except Dashboard.DoesNotExist:
-            return Response({"error": "Dashboard not found."}, status=status.HTTP_404_NOT_FOUND)
+                sentiment = Sentiment.objects.create(
+                    dashboard=dashboard,
+                    emotion=emotion,
+                    prediction=Predicted_Class,
+                    score=1
+                )
 
-        #     else:
-        #         return Response({"error": "Failed to get response from the sentiment analysis service."}, status=response.status_code)
+                return Response({"message": "Sentiment created successfully.", "sentiment_id": sentiment.id}, status=status.HTTP_201_CREATED)
 
-        # except requests.RequestException as e:
-        #     return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            except Dashboard.DoesNotExist:
+                return Response({"error": "Dashboard not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        except requests.RequestException as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     if request.method == 'GET':
         
