@@ -26,3 +26,4 @@ def create_dashboard(request):
     if request.method == 'POST':
         dashboard = Dashboard.objects.create(user=request.user)
         return Response({'message': 'Dashboard created successfully', 'id': dashboard.id}, status=status.HTTP_201_CREATED)
+    
