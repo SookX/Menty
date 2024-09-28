@@ -13,7 +13,7 @@ url = ""
 
 @api_view(['POST', 'GET'])
 @permission_classes([IsAuthenticated])
-def sentiment(request, dashboardId):
+def sentiment(request):
     
     """
     Handles sentiment entries associated with a specific dashboard.
@@ -52,7 +52,7 @@ def sentiment(request, dashboardId):
                   sentiments linked to the specified dashboard with a status 
                   code of 200 (OK).
     """
-
+    user = request.user
     
     if request.method == 'POST':
         emotion = request.data.get('emotion')
@@ -67,7 +67,7 @@ def sentiment(request, dashboardId):
         #         score = data.get('score')
 
         try:
-            dashboard = Dashboard.objects.get(id=dashboardId)
+            dashboard = Dashboard.objects.get(user=user)
 
             sentiment = Sentiment.objects.create(
                 dashboard=dashboard,
@@ -89,9 +89,11 @@ def sentiment(request, dashboardId):
 
     if request.method == 'GET':
         
-        dashboard = get_object_or_404(Dashboard, id = dashboardId)
+        # dashboard = get_object_or_404(Dashboard, id = dashboardId)
 
-        user_data = CustomUser.objects.filter(id=dashboard.user.id).values('id', 'email', 'username', 'createdAt').first()
+        dashboard = get_object_or_404(Dashboard, user = user)
+
+        user_data = CustomUser.objects.filter(id=user.id).values('id', 'email', 'username', 'createdAt').first()
 
         sentiments = Sentiment.objects.filter(dashboard=dashboard).values('emotion', 'prediction', 'score', 'date')
 
