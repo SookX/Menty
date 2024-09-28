@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 export const DataContext = createContext({})
 
@@ -7,6 +8,11 @@ const DataProvider = ({ children }) => {
 
     // Boolean for weather the layout grid is shown or not
     const [grid, setGrid] = useState(true)
+
+
+
+    // Function for navigating users across pages
+    const navigate = useNavigate()
 
 
 
@@ -51,7 +57,9 @@ const DataProvider = ({ children }) => {
     return (
         <DataContext.Provider value={{
                 grid, setGrid,
-                crud
+                crud,
+                navigate,
+                setAccess, setRefresh
             }}>
 
             {children}

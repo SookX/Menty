@@ -30,10 +30,10 @@ def register(request):
     password = request.data.get('password')
 
     if not email or not username or not password:
-        return Response({'error': 'Email, username, and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'error': 'Email, username, and password are required fields.'}, status=status.HTTP_400_BAD_REQUEST)
 
     if CustomUser.objects.filter(email=email).exists():
-        return Response({'error': 'Email already exists'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'error': 'An account with this email already exists.'}, status=status.HTTP_400_BAD_REQUEST)
 
     user = CustomUser(email=email, username=username, password=make_password(password))
     user.save()
@@ -60,11 +60,11 @@ def login(request):
     password = request.data.get('password')
 
     if not email or not password:
-        return Response({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'error': 'Email and password are required fields.'}, status=status.HTTP_400_BAD_REQUEST)
 
     user = authenticate(email=email, password=password)
     if user is None:
-        return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
+        return Response({'error': 'Invalid email or password.'}, status=status.HTTP_401_UNAUTHORIZED)
 
     refresh = RefreshToken.for_user(user)
     return Response({

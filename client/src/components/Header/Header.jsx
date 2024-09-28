@@ -13,8 +13,8 @@ const Header = () => {
             </nav>
 
             <nav className='nav'>
-                <Link className='nav-link'>Log in</Link>
-                <Link className='nav-link'>Sign up</Link>
+                <Link to='/login' className='nav-link'>Log in</Link>
+                <Link to='/register' className='nav-link'>Sign up</Link>
             </nav>
         </header>
     )

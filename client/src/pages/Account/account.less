@@ -1,0 +1,31 @@
+@import '../../globalStyling/variables.less';
+
+.account {
+    padding: 12.8rem @2colIn;
+
+    .account-form-container {
+        background-color: @primary-200;
+        border-radius: 1rem;
+        padding: 3.2rem;
+
+        .account-form-textbox {
+            text-align: center;
+            margin-bottom: 3.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+
+            .error {
+                font-style: italic;
+                font-weight: bold;
+                color: @secondary-600;
+            }
+        }
+
+        .account-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+    }
+}
