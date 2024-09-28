@@ -1,0 +1,36 @@
+@import '../../globalStyling/variables.less';
+
+.hero {
+    text-align: center;
+
+    padding: 9.6rem @1colIn;
+
+    img {
+        width: 32rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .hero-heading {
+        color: @primary-800;
+    }
+
+    .hero-text {
+        margin-bottom: 3.2rem;
+    }
+
+    @heroInput: calc(calc(var(--grid-column-width) * 6) + calc(var(--grid-gutter)) * 5);
+
+    textarea {
+        padding: 1.6rem 3.2rem;
+        width: @heroInput;
+        font-size: @p1;
+        height: 24rem;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 0.8rem;
+    }
+
+    .btn {
+        width: @heroInput;
+    }
+}
