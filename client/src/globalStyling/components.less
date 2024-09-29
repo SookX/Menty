@@ -119,27 +119,35 @@ textarea {
     font-family: inherit;
     cursor: pointer;
     border-radius: 1rem;
-    color: @primary-100;
     font-size: @p1;
     transition: .2s;
 
+    &.purple {
+        background-color: @primary-800;
+        color: @primary-100;
+        &:hover,
+        &:active {
+            color: @primary-800;
+            border: solid 0.1rem @primary-800;
+        }
+    }
 
+    &.yellow {
+        background-color: @tertiary-600;
+        color: @tertiary-100;
+        font-weight: bold;
+        &:hover,
+        &:active {
+            color: @tertiary-600;
+            border: solid 0.1rem @tertiary-600;
+        }
+    }
 
     &:hover,
     &:active {
         background-color: transparent;
-        color: @primary-800;
         font-weight: bold;
-        border: solid 0.1rem @primary-800;
     }
-}
-
-.purple {
-    background-color: @primary-800;
-}
-
-.yellow {
-    background-color: @tertiary-600;
 }
 
 

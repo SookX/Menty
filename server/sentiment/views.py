@@ -207,7 +207,7 @@ def sentiment(request):
         'help_text'
         )
 
-        last_30_sentiments = list(sentiments)[-3:]
+        last_30_sentiments = list(sentiments)[-30:]
 
         response_data = {
             "user": user_data,

@@ -6,4 +6,5 @@ djangorestframework-simplejwt
 psycopg2
 requests
 numpy
+google-auth
 groq

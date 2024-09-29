@@ -8,7 +8,7 @@
     display: flex;
     // grid-template-columns: 5fr 3fr;
     gap: 3.2rem;
-    align-items: end;
+    align-items: stretch;
     justify-content: space-between;
     // background-color: aqua;
 
@@ -56,6 +56,10 @@
             display: flex;
             flex-direction: column;
             gap: 0.4rem;
+
+            .labelbox-title {
+                color: @secondary-500;
+            }
         }
 
         .input {
