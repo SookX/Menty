@@ -96,7 +96,7 @@ const Dashboard = () => {
 
     return (
         <DashboardContext.Provider value={{
-            loading, score, user, loadingSentiment, handleSubmitSentiment
+            loading, score, user, loadingSentiment, handleSubmitSentiment, sentiments
         }}>
             {
                 loading ?
