@@ -22,14 +22,17 @@ const Login = () => {
 
 
 
-    // Checks if there is an error
+    // Stores the error and loading state
     const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(false)
 
 
 
     // Submits the form data to the backend server
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        setLoading(true)
 
         const obj = {
             email,
@@ -50,12 +53,18 @@ const Login = () => {
             navigate('/')
         }
         else setError(response.response.data.error)
+
+        setLoading(false)
     }
 
 
 
     return (
         <section className="full-section account">
+            {
+                loading &&
+                <div className="loader"></div>
+            }
             <div className="account-form-container">
                 <div className="account-form-textbox">
                     <h4 className="account-title">Log in to your account</h4>

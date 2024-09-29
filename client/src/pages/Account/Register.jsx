@@ -23,14 +23,17 @@ const Register = () => {
 
 
 
-    // Checks if there is an error
+    // Stores the error and loading states
     const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(false)
 
 
 
     // Submits the form data to the backend server
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        setLoading(true)
 
         const obj = {
             email,
@@ -49,11 +52,15 @@ const Register = () => {
         if(response.status == 201) navigate('/login')
         else setError(response.response.data.error)
 
-        console.log(error)
+        setLoading(false)
     }
 
     return (
         <section className="full-section account">
+            {
+                loading &&
+                <div className="loader"></div>
+            }
             <div className="account-form-container">
                 <div className="account-form-textbox">
                     <h4 className="account-title">Make an account</h4>
