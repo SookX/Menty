@@ -37,6 +37,13 @@
 }
 
 
+.hero {
+    background-color: @secondary-100;
+    border-radius: 7rem;
+    margin: 2rem;
+    margin-top: 10rem; // border: 8px solid red;
+}
+
 .hero-modal-title {
     margin-bottom: 1.2rem;
 }
@@ -58,7 +65,9 @@
     grid-template-columns: 2fr 1fr;
     gap: 2.4rem;
     align-items: center;
-    justify-items: center;
+    border-radius: 7rem;
+    margin: 2rem;
+
 
     .about-text-box {
         justify-self: left;
@@ -100,10 +109,12 @@
             }
 
             &.yellow {
-                background-color: @secondary-400;
+                background-color: @secondary-300;
+
                 .about-card-heading {
                     color: @secondary-800;
                 }
+
                 .about-card-text {
                     color: @secondary-700;
                 }
@@ -111,6 +122,7 @@
 
             &.purple {
                 background-color: @primary-300;
+
                 .about-card-text {
                     color: @primary-700;
                 }

@@ -16,7 +16,7 @@ const Hero = () => {
 
     // Checks if the user is logged in or not and sends them to the dashboard if they are
     const handleAiRequest = () => {
-        if(localStorage.getItem('access')) navigate('/dashboard')
+        if (localStorage.getItem('access')) navigate('/dashboard')
         else setModal(true)
     }
 
@@ -44,9 +44,9 @@ const Hero = () => {
             <h1 className="hero-heading">You're not alone!</h1>
 
             <p className="hero-text">We are here to help you! Use our tool to track your mental health and get daily advice to improve your life.
-            Tell us how you are feeling today - your mood, your activities and our AI will analyze your state and track your mental health every day.</p>
+                Tell us how you are feeling today - your mood, your activities and our AI will analyze your state and track your mental health every day.</p>
 
-            <textarea 
+            <textarea
                 placeholder='Tell us how you’re feeling...'
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
