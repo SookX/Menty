@@ -22,7 +22,7 @@ const Dashboard = () => {
 
     // Gets the scores from each sentiment
     useEffect(() => {
-        if(sentiments) setScores(sentiments.map(sentiment => sentiment.score))
+        if (sentiments) setScores(sentiments.map(sentiment => sentiment.score))
     }, [sentiments])
 
     const score = [15, 1, 24, 8, 7, 5, 16, 32, 9]
@@ -35,7 +35,11 @@ const Dashboard = () => {
 
     // Changes the loading state when everything is loaded
     useEffect(() => {
-        if(user && scores) 
+        if (user && scores)
+            setTimeout(() => {
+                setLoading(false)
+            }, 5000)
+        if (user && scores)
             setLoading(false)
     }, [user, scores])
 
@@ -43,7 +47,7 @@ const Dashboard = () => {
 
     // Checks if user is not logged in
     useEffect(() => {
-        if(!localStorage.getItem('access')) navigate('/login')
+        if (!localStorage.getItem('access')) navigate('/login')
     }, [])
 
 
@@ -56,7 +60,7 @@ const Dashboard = () => {
                 url: '/sentiment/'
             })
 
-            if(response.status == 200) {
+            if (response.status == 200) {
                 setUser(response.data.user)
                 setSentiments(response.data.sentiments)
             }
@@ -86,45 +90,45 @@ const Dashboard = () => {
         console.log(response)
         setLoadingSentiment(false)
     }
-    
+
 
     return (
         loading ?
-        <div class="loader"></div>
-        :
-        <section className="full-section dashboard">
-            {
-                loadingSentiment &&
-                <div className="loader"></div>
-            }
-            <div className="dashboard-left">
-                <div className="dashboard-textbox">
-                    <h3 className='dashboard-title'>{user.username}</h3>
-                    <p className='dashboard-email'>{user.email}</p>
-                    <p className='dashboard-text'>Welcome to your dashboard! Here you can find your mental health progress as well as your daily tips for improvement.</p>
+            <div class="loader"></div>
+            :
+            <section className="full-section dashboard">
+                {
+                    loadingSentiment &&
+                    <div className="loader"></div>
+                }
+                <div className="dashboard-left">
+                    <div className="dashboard-textbox">
+                        <h3 className='dashboard-title'>{user.username}</h3>
+                        <p className='dashboard-email'>{user.email}</p>
+                        <p className='dashboard-text'>Welcome to your dashboard! Here you can find your mental health progress as well as your daily tips for improvement.</p>
+                    </div>
+
+                    <LineChart data={score} />
+                </div >
+
+                <div className="dashboard-right">
+                    <img src={dashboard} alt="Woman thinking" className='dashboard-img' />
+
+                    <div className="dashboard-labelbox">
+                        <h5>How are you feeling today?</h5>
+                        <p>Tell us about your day. How are you feeling?</p>
+                    </div>
+
+                    <Input
+                        value={prompt}
+                        setValue={setPrompt}
+                        type="textarea"
+                    />
+
+                    <button className="btn" onClick={handleSubmitSentiment}>Submit</button>
                 </div>
 
-                <LineChart data={score} />
-            </div>
-
-            <div className="dashboard-right">
-                <img src={dashboard} alt="Woman thinking" className='dashboard-img' />
-
-                <div className="dashboard-labelbox">
-                    <h5>How are you feeling today?</h5>
-                    <p>Tell us about your day. How are you feeling?</p>
-                </div>
-
-                <Input
-                    value={prompt}
-                    setValue={setPrompt}
-                    type="textarea"
-                />
-
-                <button className="btn" onClick={handleSubmitSentiment}>Submit</button>
-            </div>
-
-        </section>
+            </section >
     )
 }
 
