@@ -39,7 +39,7 @@ const Header = () => {
                 {
                     access ?
                     <>
-                        <Link className='nav-link' onClick={handleLogOut}>Log out</Link>
+                        <Link to='/' className='nav-link' onClick={handleLogOut}>Log out</Link>
                     </>
                     :
                     <>
