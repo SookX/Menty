@@ -109,40 +109,85 @@ Use the `BLANK_README.md` to get started.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* Node.js and npm  
+  Download from [nodejs.org](https://nodejs.org/).
 
+* Python and pip  
+  Download from [python.org](https://www.python.org/downloads/).
+  
+  
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+### 1. Clone the repo
+   
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+     git clone https://github.com/your_username/your_repo_name.git
+     cd your_repo_name
    ```
-3. Install NPM packages
+   
+### 2. Setup React
+    
    ```sh
+   # Navigate to client directory
+   
+   cd client
+   ```
+   
+   ```sh
+   # Install NPM packages
+
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
    ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
+   # Create and configure .env file
+
+   VITE_GOOGLE_OAUTH2= ""
+
+   ```
+   
+   ```sh
+   # Start the Vite development server
+
+   npm run dev
+   ```
+### 3. Setup the Django backend
+
+   ```sh
+   # Navigate to the server directory
+   
+   cd ../server
    ```
 
+   ```sh
+   # Install required packages
+
+   pip install -r requirements.txt
+   ```
+
+  ```sh
+   # Create and configure the .env file with the following content
+
+   DJANGO_SECRET_KEY=
+   DJANGO_DEBUG= 
+   DJANGO_ALLOWED_HOSTS=
+   DB_NAME=
+   DB_USER=
+   DB_PASSWORD=
+   DB_HOST=
+   DB_PORT=
+   GROQ_API_KEY=
+   GOOGLE_OAUTH2=
+
+   ```
+
+  ```sh
+   # Run the Django development server
+
+   python manage.py runserver
+  ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -153,10 +198,6 @@ _Below is an example of how you can instruct your audience on installing and set
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-
 
 
 <!-- LICENSE -->
@@ -170,11 +211,12 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-
-* [React Icons](https://react-icons.github.io/react-icons/search)
-
+## Deep Learning
+<div align="center">
+ <a href="https://github.com/othneildrew/Best-README-Template">
+     <img src="https://i.ibb.co/pQLdkHv/model.png"  width="280" height="2146">
+  </a>
+</div>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contributors
