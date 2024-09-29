@@ -11,7 +11,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 from google.oauth2 import id_token
 from google.auth.transport import requests
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
 @api_view(['POST'])
 def register(request):
@@ -133,9 +136,11 @@ def user(request):
 @api_view(['POST'])
 def google_login(request):
     token = request.data.get('token')
-    idinfo = id_token.verify_oauth2_token(token, requests.Request(), '916906730222-hktkvhefo2ptkq1r391vrpvthkk18rsn.apps.googleusercontent.com')
+    
+    idinfo = id_token.verify_oauth2_token(token, requests.Request(), os.getenv('GOOGLE_OAUTH2'))
     print(idinfo)
     user, created = CustomUser.objects.get_or_create(email=idinfo['email'], username = idinfo['name'])
+    Dashboard.objects.get_or_create(user = user)
     refresh = RefreshToken.for_user(user)
     return Response({
         'refresh': str(refresh),
