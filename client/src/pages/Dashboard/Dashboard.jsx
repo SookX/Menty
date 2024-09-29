@@ -37,12 +37,7 @@ const Dashboard = () => {
 
     // Changes the loading state when everything is loaded
     useEffect(() => {
-        if (user && scores)
-            setTimeout(() => {
-                setLoading(false)
-            }, 5000)
-        if (user && scores)
-            setLoading(false)
+        if (user && scores) setLoading(false)
     }, [user, scores])
 
 
