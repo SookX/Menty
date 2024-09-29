@@ -193,7 +193,7 @@ def sentiment(request):
 
         user_data = CustomUser.objects.filter(id=user.id).values('id', 'email', 'username', 'createdAt').first()
 
-        sentiments = Sentiment.objects.filter(dashboard=dashboard).values(
+        sentiments = Sentiment.objects.filter(dashboard=dashboard).order_by('-date')[:30].values(
         'emotion', 
         'prediction', 
         'date', 
