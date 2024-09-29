@@ -32,7 +32,7 @@ const Dashboard = () => {
 
 
     // Stores the loading state
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [loadingSentiment, setLoadingSentiment] = useState(false)
 
     // Changes the loading state when everything is loaded
@@ -103,7 +103,7 @@ const Dashboard = () => {
                 <div class="loader"></div>
                 :
                 <>
-                    {/* <ChartSection /> */}
+                    <ChartSection />
                     <StepSection />
                 </>
             }
