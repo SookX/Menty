@@ -118,9 +118,14 @@ textarea {
     padding: 1.6rem 3.2rem;
     font-family: inherit;
     cursor: pointer;
+    font-weight: bold;
     border-radius: 1rem;
     font-size: @p1;
     transition: .2s;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
 
     &.purple {
         background-color: @primary-800;
@@ -133,7 +138,7 @@ textarea {
     }
 
     &.yellow {
-        background-color: @tertiary-600;
+        background-color: @tertiary-700;
         color: @tertiary-100;
         font-weight: bold;
         &:hover,
