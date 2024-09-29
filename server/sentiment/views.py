@@ -193,7 +193,7 @@ def sentiment(request):
 
         user_data = CustomUser.objects.filter(id=user.id).values('id', 'email', 'username', 'createdAt').first()
 
-        sentiments = Sentiment.objects.filter(dashboard=dashboard).order_by('-date')[:30].values(
+        sentiments = Sentiment.objects.filter(dashboard=dashboard).order_by('date').values(
         'emotion', 
         'prediction', 
         'date', 
@@ -207,9 +207,11 @@ def sentiment(request):
         'help_text'
         )
 
+        last_30_sentiments = list(sentiments)[-3:]
+
         response_data = {
             "user": user_data,
-            "sentiments": list(sentiments)
+            "sentiments": last_30_sentiments
         }
 
         return Response(response_data, status=status.HTTP_200_OK)
