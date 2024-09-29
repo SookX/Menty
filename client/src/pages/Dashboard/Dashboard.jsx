@@ -23,6 +23,7 @@ const Dashboard = () => {
     const [personalityDisorder, setPersonalityDisorder] = useState(null)
     const [stress, setStress] = useState(null)
     const [suicidal, setSuicidal] = useState(null)
+    const [dates, setDates] = useState(null)
 
 
 
@@ -36,6 +37,7 @@ const Dashboard = () => {
             setPersonalityDisorder(sentiments.map(sentiment => sentiment.personality_disorder_score))
             setStress(sentiments.map(sentiment => sentiment.stress_score))
             setSuicidal(sentiments.map(sentiment => sentiment.suicidal_score))
+            setDates(sentiments.map((sentiment) => sentiment.date.split('T')[0]))
         }
     }, [sentiments])
 
@@ -47,10 +49,10 @@ const Dashboard = () => {
 
     // Changes the loading state when everything is loaded and puts the scores into one array
     useEffect(() => {
-        if (user && score && anxiety && depression && bipolar && personalityDisorder && stress && suicidal) {
+        if (user && score && anxiety && depression && bipolar && personalityDisorder && stress && suicidal && dates) {
             setLoading(false)
         }
-    }, [user, score, anxiety, depression, bipolar, personalityDisorder, stress, suicidal])
+    }, [user, score, anxiety, depression, bipolar, personalityDisorder, stress, suicidal, dates])
 
 
 
@@ -72,6 +74,8 @@ const Dashboard = () => {
             if (response.status == 200) {
                 setUser(response.data.user)
                 setSentiments(response.data.sentiments)
+                // let sentimentsRaw = response.data.sentiments
+                // setSentiments(sentimentsRaw.sort((a, b) => new Date(a.date) - new Date(b.date)))
             }
 
             console.log(response)
@@ -103,7 +107,8 @@ const Dashboard = () => {
 
     return (
         <DashboardContext.Provider value={{
-            loading, score, user, loadingSentiment, handleSubmitSentiment, sentiments
+            loading, user, loadingSentiment, handleSubmitSentiment, sentiments,
+            score, anxiety, bipolar, depression, suicidal, personalityDisorder, stress, dates
         }}>
             {
                 loading ?
