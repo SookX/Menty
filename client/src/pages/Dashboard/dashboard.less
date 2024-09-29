@@ -5,7 +5,7 @@
     display: grid;
     grid-template-columns: 5fr 3fr;
     gap: 6.4rem;
-    align-items: end;
+    align-items: center;
 
     .dashboard-textbox {
         margin-bottom: 3.2rem;
@@ -25,13 +25,33 @@
     .dashboard-right {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 1.2rem;
+        text-align: center;
 
-        .input textarea {
-            flex-grow: 1;
-            padding: 1.6rem;
-            background-color: transparent;
-            height: 16rem;
+        .dashboard-img {
+            width: 16rem;
+        }
+
+        .dashboard-labelbox {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .input {
+            width: 100%;
+
+            textarea {
+                flex-grow: 1;
+                padding: 1.6rem;
+                background-color: transparent;
+                height: 16rem;
+            }
+        }
+
+        .btn {
+            width: 100%;
         }
     }
 }
@@ -41,4 +61,5 @@
     border-radius: 1rem;
     padding: 3.2rem;
     width: 100%;
+    min-height: 48rem;
 }

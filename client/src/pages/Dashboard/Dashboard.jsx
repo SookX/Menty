@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../context/DataContext";
 import Input from "../../components/Input/Input";
 import LineChart from './LineChart';
+import dashboard from '../../img/dashboard.png'
 
 
 
@@ -96,8 +97,12 @@ const Dashboard = () => {
             </div>
 
             <div className="dashboard-right">
-                <h5>How are you feeling today?</h5>
-                <p>Tell us about your day. How are you feeling?</p>
+                <img src={dashboard} alt="Woman thinking" className='dashboard-img' />
+
+                <div className="dashboard-labelbox">
+                    <h5>How are you feeling today?</h5>
+                    <p>Tell us about your day. How are you feeling?</p>
+                </div>
 
                 <Input
                     value={prompt}
