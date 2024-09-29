@@ -47,8 +47,6 @@ const Register = () => {
             body: obj
         })
 
-        console.log(response)
-
         if (response.status == 201) navigate('/login')
         else setError(response.response.data.error)
 

@@ -56,9 +56,13 @@ const StepSection = () => {
 
 
     return (
-        <section className="full-section steps">
+        <section className="steps">
             <h3>Your daily advice from us</h3>
             <p className="advice-date">{date}</p>
+            {
+                !sentiments.length &&
+                <p className="advice-text">Seems like you haven't written anything today. Tell us about your mental state so we can give the best improvement tips just for you.</p>
+            }
             {/* <p className="advice-text">Thanks for sharing your thoughts with us! Based on what you said, Menty.AI came up with some improvement tips just for you.</p>
              */}
             {

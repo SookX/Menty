@@ -7,3 +7,4 @@ psycopg2
 requests
 numpy
 groq
+google-oauth2

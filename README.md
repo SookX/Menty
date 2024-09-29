@@ -77,7 +77,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<img src = "https://i.ibb.co/g6GJTFx/Screenshot-2024-09-29-183950.png">
 There are many mental health apps available, but none of them quite fit the level of personalized care and insights that users truly need. That's why Menty.AI was created—to offer an enhanced, AI-driven solution for mental wellness that feels tailored to each individual.
 
 Here's why:
@@ -86,9 +86,6 @@ Here's why:
 * Leveraging the power of AI, Menty.AI offers insights based on your emotional patterns, helping you develop a deeper understanding of your mental health while suggesting actionable steps for improvement :relieved:
 
 Of course, no one solution works for everyone. That's why Menty.AI continues to evolve. We're open to feedback and ideas from users like you, helping us make this assistant even more helpful. Feel free to suggest changes by contributing to this project or submitting feedback. Thanks to everyone who has supported the development of Menty.AI so far!
-Use the `BLANK_README.md` to get started.
-Use the `BLANK_README.md` to get started.
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -109,40 +106,85 @@ Use the `BLANK_README.md` to get started.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* Node.js and npm  
+  Download from [nodejs.org](https://nodejs.org/).
 
+* Python and pip  
+  Download from [python.org](https://www.python.org/downloads/).
+  
+  
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+### 1. Clone the repo
+   
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+     git clone https://github.com/SookX/Menty
+     cd Menty
    ```
-3. Install NPM packages
+   
+### 2. Setup React
+    
    ```sh
+   # Navigate to client directory
+   
+   cd client
+   ```
+   
+   ```sh
+   # Install NPM packages
+
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
    ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
+   # Create and configure .env file
+
+   VITE_GOOGLE_OAUTH2= ""
+
+   ```
+   
+   ```sh
+   # Start the Vite development server
+
+   npm run dev
+   ```
+### 3. Setup the Django backend
+
+   ```sh
+   # Navigate to the server directory
+   
+   cd ../server
    ```
 
+   ```sh
+   # Install required packages
+
+   pip install -r requirements.txt
+   ```
+
+  ```sh
+   # Create and configure the .env file with the following content
+
+   DJANGO_SECRET_KEY=
+   DJANGO_DEBUG= 
+   DJANGO_ALLOWED_HOSTS=
+   DB_NAME=
+   DB_USER=
+   DB_PASSWORD=
+   DB_HOST=
+   DB_PORT=
+   GROQ_API_KEY=
+   GOOGLE_OAUTH2=
+
+   ```
+
+  ```sh
+   # Run the Django development server
+
+   python manage.py runserver
+  ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -150,13 +192,10 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+<img src = "https://i.ibb.co/55rZ8Hz/gif.gif">
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-
 
 
 <!-- LICENSE -->
@@ -170,18 +209,13 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-
-* [React Icons](https://react-icons.github.io/react-icons/search)
-
+## Deep Learning
+<div align="center">
+ <a href="https://github.com/othneildrew/Best-README-Template">
+     <img src="https://i.ibb.co/pQLdkHv/model.png"  width="280" height="2146">
+  </a>
+</div>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Contributors
-<a href="https://github.com/SookX/Menty/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=SookX/Menty" />
-</a>
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->

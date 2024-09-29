@@ -74,15 +74,68 @@ const Dashboard = () => {
             if (response.status == 200) {
                 setUser(response.data.user)
                 setSentiments(response.data.sentiments)
-                // let sentimentsRaw = response.data.sentiments
-                // setSentiments(sentimentsRaw.sort((a, b) => new Date(a.date) - new Date(b.date)))
             }
-
-            console.log(response)
         }
 
         fetching()
     }, [])
+
+
+
+    // Stores the state of the submit button
+    const [disabled, setDisabled] = useState(false)
+
+    // Stores the remaining time till the button can be clicked again
+    const [remainingTime, setRemainingTime] = useState(0)
+    const [remainingString, setRemainingString] = useState('')
+
+    // Stores the time for which the button will be disabled
+    const time = 86400000
+
+    // Calculates the remaining time if the button is disabled
+    useEffect(() => {
+        const lastClicked = localStorage.getItem('lastClicked');
+
+        if (lastClicked) {
+            const timeElapsed = new Date().getTime() - lastClicked;
+
+            if (timeElapsed < time) {
+                setDisabled(true);
+                setRemainingTime(time - timeElapsed); 
+            }
+        }
+    }, []);
+
+    // Start a countdown
+    useEffect(() => {
+        let timer;
+
+        if (disabled) {
+            timer = setInterval(() => {
+                setRemainingTime((prevTime) => {
+                    if (prevTime <= 1000) {
+                        clearInterval(timer)
+                        setDisabled(false)
+                        return 0;
+                    }
+                    return prevTime - 1000;
+                });
+            }, 1000);
+        }
+
+        return () => clearInterval(timer)
+    }, [disabled]);
+
+    // Get time string from the remaining time
+    const getRemainingTimeString = () => {
+        const hours = Math.floor((remainingTime / 3600000) % 24);
+        const minutes = Math.floor((remainingTime / 60000) % 60);
+        setRemainingString(`${hours} hour(s) and ${minutes} minute(s)`)
+    }
+
+    useEffect(() => {
+        getRemainingTimeString()
+    }, [remainingTime])
 
 
 
@@ -100,7 +153,13 @@ const Dashboard = () => {
             body: obj
         })
 
-        console.log(response)
+        if(response.status == 201) {
+            localStorage.setItem('lastClicked', new Date().getTime())
+            setDisabled(true)
+            setRemainingTime(time)
+            window.location.reload(false)
+        }
+
         setLoadingSentiment(false)
     }
 
@@ -108,7 +167,8 @@ const Dashboard = () => {
     return (
         <DashboardContext.Provider value={{
             loading, user, loadingSentiment, handleSubmitSentiment, sentiments,
-            score, anxiety, bipolar, depression, suicidal, personalityDisorder, stress, dates
+            score, anxiety, bipolar, depression, suicidal, personalityDisorder, stress, dates,
+            disabled, remainingString
         }}>
             {
                 loading ?
