@@ -15,6 +15,7 @@ import os
 from datetime import timedelta
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,6 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -35,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'users',  # Your custom user app
+    'users',  
     'dashboard',
     'sentiment',
 ]
@@ -82,6 +84,8 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT'), 
     }
 }
+
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
