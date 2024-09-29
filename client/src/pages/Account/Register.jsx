@@ -91,6 +91,13 @@ const Register = () => {
                     />
 
                     <button className="btn purple" type="submit">Make my account</button>
+                    <div className="google-login-container">
+                        <GoogleLogin
+
+                            onSuccess={handleGoogleLoginSuccess}
+                            onError={handleGoogleLoginFailure}
+                        />
+                    </div>
                 </form>
             </div>
         </section>

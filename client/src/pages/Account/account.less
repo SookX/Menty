@@ -29,3 +29,56 @@
         }
     }
 }
+
+.google-login-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: @primary-800;
+    border-radius: 1rem;
+    // padding: 1.6rem 3.2rem;
+    transition: .2s;
+
+    &:hover,
+    &:active {
+        border: solid 0.1rem @primary-800;
+
+        background-color: transparent;
+    }
+
+}
+
+.google-login-container div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // padding: 1.6rem 3.2rem;
+    width: 100%;
+    font-family: @font-primary;
+    color: @primary-100;
+    background-color: transparent;
+    border: none;
+    font-size: @p1;
+
+    &:hover,
+    &:active {
+        background-color: transparent;
+        border: transparent;
+        color: @primary-800;
+    }
+
+}
+
+
+
+
+// .google-login-container div img {
+//     width: 20px;
+//     height: 20px;
+//     margin-right: 10px;
+// }
+
+// .google-login-container div span {
+//     color: transparent;
+//     font-size: 16px;
+// }
