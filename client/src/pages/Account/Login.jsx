@@ -88,7 +88,7 @@ const Login = () => {
                 <form className="account-form" onSubmit={handleSubmit}>
                     <Input value={email} setValue={setEmail} type="email" label="Email" />
                     <Input value={password} setValue={setPassword} type="password" label="Password" />
-                    <button className="btn" type="submit">Log in to my account</button>
+                    <button className="btn purple" type="submit">Log in to my account</button>
                     <GoogleLogin
                         onSuccess={handleGoogleLoginSuccess}
                         onError={handleGoogleLoginFailure}
