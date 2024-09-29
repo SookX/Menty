@@ -34,7 +34,7 @@ const Hero = () => {
 
                 <div className="hero-modal-btn-box">
                     <button onClick={() => setModal(false)} className="btn btn-secondary">Cancel</button>
-                    <button className=" purple" onClick={() => navigate('/register')}>Sign up</button>
+                    <button className="btn purple" onClick={() => navigate('/register')}>Sign up</button>
                 </div>
             </Modal>
 

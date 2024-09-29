@@ -37,7 +37,7 @@ const About = () => {
                 </p>
             </div>
 
-            <img src={about} alt="You're not alone" />
+            <img src={about} className='about-img' alt="You're not alone" />
 
 
         </section>
