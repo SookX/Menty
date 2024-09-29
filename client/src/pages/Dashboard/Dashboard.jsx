@@ -34,7 +34,10 @@ const Dashboard = () => {
 
     // Changes the loading state when everything is loaded
     useEffect(() => {
-        if(user && scores) setLoading(false)
+        if(user && scores) 
+            setTimeout(() => {
+                setLoading(false)
+            }, 5000)
     }, [user, scores])
 
 
@@ -84,36 +87,38 @@ const Dashboard = () => {
     
 
     return (
-        !loading &&
-        <section className="full-section dashboard">
-            <div className="dashboard-left">
-                <div className="dashboard-textbox">
-                    <h3 className='dashboard-title'>{user.username}</h3>
-                    <p className='dashboard-email'>{user.email}</p>
-                    <p className='dashboard-text'>Welcome to your dashboard! Here you can find your mental health progress as well as your daily tips for improvement.</p>
-                </div>
+        // loading ?
+        <div class="loader"></div>
+        // :
+        // <section className="full-section dashboard">
+        //     <div className="dashboard-left">
+        //         <div className="dashboard-textbox">
+        //             <h3 className='dashboard-title'>{user.username}</h3>
+        //             <p className='dashboard-email'>{user.email}</p>
+        //             <p className='dashboard-text'>Welcome to your dashboard! Here you can find your mental health progress as well as your daily tips for improvement.</p>
+        //         </div>
 
-                <LineChart data={score} />
-            </div>
+        //         <LineChart data={score} />
+        //     </div>
 
-            <div className="dashboard-right">
-                <img src={dashboard} alt="Woman thinking" className='dashboard-img' />
+        //     <div className="dashboard-right">
+        //         <img src={dashboard} alt="Woman thinking" className='dashboard-img' />
 
-                <div className="dashboard-labelbox">
-                    <h5>How are you feeling today?</h5>
-                    <p>Tell us about your day. How are you feeling?</p>
-                </div>
+        //         <div className="dashboard-labelbox">
+        //             <h5>How are you feeling today?</h5>
+        //             <p>Tell us about your day. How are you feeling?</p>
+        //         </div>
 
-                <Input
-                    value={prompt}
-                    setValue={setPrompt}
-                    type="textarea"
-                />
+        //         <Input
+        //             value={prompt}
+        //             setValue={setPrompt}
+        //             type="textarea"
+        //         />
 
-                <button className="btn" onClick={handleSubmitSentiment}>Submit</button>
-            </div>
+        //         <button className="btn" onClick={handleSubmitSentiment}>Submit</button>
+        //     </div>
 
-        </section>
+        // </section>
     )
 }
 

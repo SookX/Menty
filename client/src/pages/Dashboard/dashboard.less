@@ -1,4 +1,7 @@
 @import '../../globalStyling/variables.less';
+@import '../../globalStyling/components.less';
+
+
 
 .dashboard {
     padding: 12.8rem @1colIn;
@@ -56,10 +59,54 @@
     }
 }
 
+
+
 .chart-container {
     border: solid 0.1rem @primary-500;
     border-radius: 1rem;
     padding: 3.2rem;
     width: 100%;
     min-height: 48rem;
+}
+
+
+
+
+// https://css-loaders.com/eyes/
+.loader {
+    .screen-overlay;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+
+    &::before,
+    &::after {
+        content: "";
+        height: 4.8rem;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background:
+            linear-gradient(@neutral-800 0 0) top/100% 0% no-repeat,
+            radial-gradient(farthest-side,@secondary-700 95%,#0000) 50%/2rem 2rem no-repeat
+            #fff;
+        animation: l9 4s infinite ease-in;
+    }
+}
+
+
+@keyframes l9 {
+    0%  {
+        background-size: 100% 0%, 2rem 2rem;
+        background-position: top, 50% 50%
+    }
+    80% {
+        background-size:100% 70%, 2rem 2rem;
+        background-position:top, 50% 70%
+    }
+    84%,
+    100%{
+        background-size:100% 0%, 2rem 2rem;
+        background-position:top, 50% 50%
+    }
 }
