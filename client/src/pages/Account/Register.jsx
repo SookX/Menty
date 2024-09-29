@@ -11,7 +11,7 @@ const Register = () => {
 
     // Checks if the user is already logged in
     useEffect(() => {
-        if(localStorage.getItem('access')) navigate('/dashboard')
+        if (localStorage.getItem('access')) navigate('/dashboard')
     }, [])
 
 
@@ -48,8 +48,8 @@ const Register = () => {
         })
 
         console.log(response)
-        
-        if(response.status == 201) navigate('/login')
+
+        if (response.status == 201) navigate('/login')
         else setError(response.response.data.error)
 
         setLoading(false)
@@ -90,7 +90,7 @@ const Register = () => {
                         label="Password"
                     />
 
-                    <button className="btn" type="submit">Make my account</button>
+                    <button className="btn purple" type="submit">Make my account</button>
                 </form>
             </div>
         </section>

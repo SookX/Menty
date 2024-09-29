@@ -39,7 +39,7 @@ const ChartSection = () => {
                     type="textarea"
                 />
 
-                <button className="btn" onClick={handleSubmitSentiment}>Submit</button>
+                <button className="btn yellow" onClick={handleSubmitSentiment}>Submit</button>
             </div>
 
         </section >

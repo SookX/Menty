@@ -34,7 +34,7 @@ const Hero = () => {
 
                 <div className="hero-modal-btn-box">
                     <button onClick={() => setModal(false)} className="btn btn-secondary">Cancel</button>
-                    <button className="btn" onClick={() => navigate('/register')}>Sign up</button>
+                    <button className=" purple" onClick={() => navigate('/register')}>Sign up</button>
                 </div>
             </Modal>
 
@@ -52,7 +52,7 @@ const Hero = () => {
                 onChange={(e) => setPrompt(e.target.value)}
             />
 
-            <button className="btn" onClick={handleAiRequest}>Analyze my mental health</button>
+            <button className="btn yellow" onClick={handleAiRequest}>Analyze my mental health</button>
         </section>
     )
 }

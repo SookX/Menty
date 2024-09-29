@@ -11,7 +11,7 @@ const Login = () => {
 
     // Checks if the user is already logged in
     useEffect(() => {
-        if(localStorage.getItem('access')) navigate('/dashboard')
+        if (localStorage.getItem('access')) navigate('/dashboard')
     }, [])
 
 
@@ -45,7 +45,7 @@ const Login = () => {
             body: obj
         })
 
-        if(response.status == 200) {
+        if (response.status == 200) {
             localStorage.setItem('access', response.data.access)
             setAccess(response.data.access)
             localStorage.setItem('refresh', response.data.refresh)
@@ -89,7 +89,7 @@ const Login = () => {
                         label="Password"
                     />
 
-                    <button className="btn" type="submit">Log in to my account</button>
+                    <button className="btn purple" type="submit">Log in to my account</button>
                 </form>
             </div>
         </section>
