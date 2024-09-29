@@ -22,7 +22,7 @@ const Dashboard = () => {
 
     // Gets the scores from each sentiment
     useEffect(() => {
-        if(sentiments) setScores(sentiments.map(sentiment => sentiment.score))
+        if (sentiments) setScores(sentiments.map(sentiment => sentiment.score))
     }, [sentiments])
 
     const score = [15, 1, 24, 8, 7, 5, 16, 32, 9]
@@ -34,7 +34,7 @@ const Dashboard = () => {
 
     // Changes the loading state when everything is loaded
     useEffect(() => {
-        if(user && scores) 
+        if (user && scores)
             setTimeout(() => {
                 setLoading(false)
             }, 5000)
@@ -44,7 +44,7 @@ const Dashboard = () => {
 
     // Checks if user is not logged in
     useEffect(() => {
-        if(!localStorage.getItem('access')) navigate('/login')
+        if (!localStorage.getItem('access')) navigate('/login')
     }, [])
 
 
@@ -57,7 +57,7 @@ const Dashboard = () => {
                 url: '/sentiment/'
             })
 
-            if(response.status == 200) {
+            if (response.status == 200) {
                 setUser(response.data.user)
                 setSentiments(response.data.sentiments)
             }
@@ -84,11 +84,11 @@ const Dashboard = () => {
 
         console.log(response)
     }
-    
+
 
     return (
         // loading ?
-        <div class="loader"></div>
+        <div className="loader"></div>
         // :
         // <section className="full-section dashboard">
         //     <div className="dashboard-left">
