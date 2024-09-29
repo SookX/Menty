@@ -6,7 +6,7 @@
 
     padding: 9.6rem @1colIn;
 
-    background-color: @secondary-100;
+    background-color: @tertiary-400;
 
 
 
@@ -16,11 +16,20 @@
     }
 
     .hero-heading {
-        color: @primary-800;
+        color: @tertiary-600;
+        margin-left: 55rem;
+        margin-right: 55rem;
+        margin-bottom: 3rem;
+        // border-bottom: solid 0.1rem @tertiary-700;
     }
 
     .hero-text {
+        display: flex;
+        flex-direction: column;
         margin-bottom: 3.2rem;
+        margin-left: 38rem;
+        margin-right: 38rem;
+        // border: 2px solid red;
     }
 
     @heroInput: calc(calc(var(--grid-column-width) * 6) + calc(var(--grid-gutter)) * 5);
@@ -33,7 +42,8 @@
         display: block;
         margin: 0 auto;
         margin-bottom: 0.8rem;
-        background-color: @primary-150;
+        background-color: @tertiary-300;
+
     }
 
     .btn {

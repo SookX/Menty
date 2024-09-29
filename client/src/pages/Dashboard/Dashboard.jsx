@@ -6,7 +6,7 @@ import LineChart from './LineChart';
 import ChartSection from './ChartSection';
 
 
-export const DashboardContext = createContext({ })
+export const DashboardContext = createContext({})
 
 const Dashboard = () => {
     // Gets global data from the context
@@ -31,7 +31,7 @@ const Dashboard = () => {
 
 
     // Stores the loading state
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [loadingSentiment, setLoadingSentiment] = useState(false)
 
     // Changes the loading state when everything is loaded
@@ -99,11 +99,11 @@ const Dashboard = () => {
         }}>
             {
                 loading ?
-                <div class="loader"></div>
-                :
-                <>
-                    <ChartSection />
-                </>
+                    <div class="loader"></div>
+                    :
+                    <>
+                        {/* <ChartSection /> */}
+                    </>
             }
         </DashboardContext.Provider>
     )
