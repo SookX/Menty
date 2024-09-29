@@ -193,7 +193,19 @@ def sentiment(request):
 
         user_data = CustomUser.objects.filter(id=user.id).values('id', 'email', 'username', 'createdAt').first()
 
-        sentiments = Sentiment.objects.filter(dashboard=dashboard).values('emotion', 'prediction', 'score', 'date')
+        sentiments = Sentiment.objects.filter(dashboard=dashboard).values(
+        'emotion', 
+        'prediction', 
+        'date', 
+        'anxiety_score', 
+        'bipolar_score', 
+        'depression_score', 
+        'normal_score', 
+        'personality_disorder_score', 
+        'stress_score', 
+        'suicidal_score',
+        'help_text'
+        )
 
         response_data = {
             "user": user_data,
