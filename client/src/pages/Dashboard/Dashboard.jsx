@@ -7,7 +7,7 @@ import ChartSection from './ChartSection';
 import StepSection from './StepSection';
 
 
-export const DashboardContext = createContext({ })
+export const DashboardContext = createContext({})
 
 const Dashboard = () => {
     // Gets global data from the context
@@ -100,12 +100,12 @@ const Dashboard = () => {
         }}>
             {
                 loading ?
-                <div class="loader"></div>
-                :
-                <>
-                    <ChartSection />
-                    <StepSection />
-                </>
+                    <div class="loader"></div>
+                    :
+                    <>
+                        <ChartSection />
+                        <StepSection />
+                    </>
             }
         </DashboardContext.Provider>
     )
