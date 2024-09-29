@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Input from "../../components/Input/Input";
 import './account.less';
 import { DataContext } from "../../context/DataContext";
-import { GoogleLogin } from '@react-oauth/google'; // Ensure correct import
+import { GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
     const { crud, navigate, setAccess, setRefresh } = useContext(DataContext);
@@ -88,12 +88,21 @@ const Login = () => {
                 <form className="account-form" onSubmit={handleSubmit}>
                     <Input value={email} setValue={setEmail} type="email" label="Email" />
                     <Input value={password} setValue={setPassword} type="password" label="Password" />
-                    <button className="btn purple" type="submit">Log in to my account</button>
-                    <GoogleLogin
-                        onSuccess={handleGoogleLoginSuccess}
-                        onError={handleGoogleLoginFailure}
-                        logo_alignment="left"
-                    />
+                    <div className="login-options">
+
+
+
+                        <div className="google-login-container">
+                            <GoogleLogin
+
+                                onSuccess={handleGoogleLoginSuccess}
+                                onError={handleGoogleLoginFailure}
+                            />
+                        </div>
+                        <button className="btn purple" type="submit">Log in to my account</button>
+                    </div>
+
+
                 </form>
             </div>
         </section>

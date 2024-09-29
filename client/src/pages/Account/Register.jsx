@@ -3,6 +3,7 @@ import Input from "../../components/Input/Input"
 import './account.less'
 import { DataContext } from "../../context/DataContext"
 
+
 const Register = () => {
     // Gets global variables
     const { crud, navigate } = useContext(DataContext)
@@ -87,11 +88,20 @@ const Register = () => {
                         type="password"
                         label="Password"
                     />
-
+                    {/*<div className="login-options"> */}
                     <button className="btn purple" type="submit">Make my account</button>
+                    {/* <div className="google-login-container">
+                        <GoogleLogin
+
+                            onSuccess={handleGoogleLoginSuccess}
+                            onError={handleGoogleLoginFailure}
+                        />
+                    </div></div> */}
+
+
                 </form>
-            </div>
-        </section>
+            </div >
+        </section >
 
     )
 }

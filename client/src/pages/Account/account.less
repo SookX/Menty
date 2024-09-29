@@ -29,3 +29,55 @@
         }
     }
 }
+
+.login-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.3rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    // border: 2px solid red;
+}
+
+.google-login-container {
+    display: flex;
+    justify-content: center;
+    background-color: @primary-800;
+    border-radius: 1rem;
+    padding: 0.7rem 1.6rem;
+    transition: .2s;
+    width: 50%;
+
+    &:hover,
+    &:active {
+        border: solid 0.1rem @primary-800;
+        color: @primary-800;
+        background-color: transparent;
+    }
+
+}
+
+.google-login-container div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-family: @font-primary;
+    color: @primary-100;
+    background-color: transparent;
+    border: none;
+    font-size: @p1;
+
+    &:hover,
+    &:active {
+        background-color: transparent;
+        border: transparent;
+
+    }
+
+}
+
+.btn {
+    width: 50%;
+}

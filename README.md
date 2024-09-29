@@ -77,7 +77,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<img src = "https://i.ibb.co/g6GJTFx/Screenshot-2024-09-29-183950.png">
 There are many mental health apps available, but none of them quite fit the level of personalized care and insights that users truly need. That's why Menty.AI was created—to offer an enhanced, AI-driven solution for mental wellness that feels tailored to each individual.
 
 Here's why:
@@ -86,9 +86,6 @@ Here's why:
 * Leveraging the power of AI, Menty.AI offers insights based on your emotional patterns, helping you develop a deeper understanding of your mental health while suggesting actionable steps for improvement :relieved:
 
 Of course, no one solution works for everyone. That's why Menty.AI continues to evolve. We're open to feedback and ideas from users like you, helping us make this assistant even more helpful. Feel free to suggest changes by contributing to this project or submitting feedback. Thanks to everyone who has supported the development of Menty.AI so far!
-Use the `BLANK_README.md` to get started.
-Use the `BLANK_README.md` to get started.
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -124,8 +121,8 @@ Use the `BLANK_README.md` to get started.
 ### 1. Clone the repo
    
    ```sh
-     git clone https://github.com/your_username/your_repo_name.git
-     cd your_repo_name
+     git clone https://github.com/SookX/Menty
+     cd Menty
    ```
    
 ### 2. Setup React
@@ -195,6 +192,7 @@ Use the `BLANK_README.md` to get started.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+<img src = "https://i.ibb.co/55rZ8Hz/gif.gif">
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -218,12 +216,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
   </a>
 </div>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Contributors
-<a href="https://github.com/SookX/Menty/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=SookX/Menty" />
-</a>
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
