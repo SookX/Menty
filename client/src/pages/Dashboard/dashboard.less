@@ -4,12 +4,13 @@
 
 
 .dashboard {
-    padding: 12.8rem @1colIn;
+    padding: 12.8rem @0colIn 6.4rem @0colIn;
     display: flex;
     // grid-template-columns: 5fr 3fr;
     gap: 3.2rem;
     align-items: end;
     justify-content: space-between;
+    // background-color: aqua;
 
     .dashboard-left {
         width: 60%;
@@ -87,43 +88,28 @@
 
 
 
-// https://css-loaders.com/eyes/
-.loader {
-    .screen-overlay;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2.4rem;
-    background-color: rgba(0, 0, 0, 0.5);
 
-    &::before,
-    &::after {
-        content: "";
-        height: 4.8rem;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        background:
-            linear-gradient(@neutral-800 0 0) top/100% 0% no-repeat,
-            radial-gradient(farthest-side, @primary-800 95%, #0000) 50%/1.6rem 1.6rem no-repeat #fff;
-        animation: l9 2s infinite ease-in;
-    }
-}
+.steps {
+    padding: 3.2rem @1colIn;
 
-
-@keyframes l9 {
-    0% {
-        background-size: 100% 0%, 1.6rem 1.6rem;
-        background-position: top, 50% 50%
+    .advice-date {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 2.4rem;
+        color: @secondary-500;
     }
 
-    80% {
-        background-size: 100% 70%, 1.6rem 1.6rem;
-        background-position: top, 50% 70%
+    .advice-label {
+        font-size: 1.8rem;
+        color: @neutral-600;
     }
 
-    84%,
-    100% {
-        background-size: 100% 0%, 1.6rem 1.6rem;
-        background-position: top, 50% 50%
+    .advice-text {
+        margin-bottom: 2.4rem;
+        color: @neutral-600;
+    }
+
+    .advice-heading {
+        margin-bottom: 0.4rem;
     }
 }

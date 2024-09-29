@@ -177,3 +177,47 @@ textarea {
 .modal-closed {
     transform: scale(0);
 }
+
+
+
+// LOADING ANIMATION
+// https://css-loaders.com/eyes/
+.loader {
+    .screen-overlay;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.4rem;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    &::before,
+    &::after {
+        content: "";
+        height: 4.8rem;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background:
+            linear-gradient(@neutral-800 0 0) top/100% 0% no-repeat,
+            radial-gradient(farthest-side, @primary-800 95%, #0000) 50%/1.6rem 1.6rem no-repeat #fff;
+        animation: l9 2s infinite ease-in;
+    }
+}
+
+
+@keyframes l9 {
+    0% {
+        background-size: 100% 0%, 1.6rem 1.6rem;
+        background-position: top, 50% 50%
+    }
+
+    80% {
+        background-size: 100% 70%, 1.6rem 1.6rem;
+        background-position: top, 50% 70%
+    }
+
+    84%,
+    100% {
+        background-size: 100% 0%, 1.6rem 1.6rem;
+        background-position: top, 50% 50%
+    }
+}
