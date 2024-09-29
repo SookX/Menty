@@ -9,6 +9,8 @@ from django.shortcuts import get_object_or_404
 from dashboard.models import Dashboard
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
+from google.oauth2 import id_token
+from google.auth.transport import requests
 
 
 @api_view(['POST'])
@@ -126,3 +128,17 @@ def user(request):
     if request.method == 'GET':
         data = CustomUser.objects.values('id', 'last_login', 'email', 'username', 'createdAt')
         return Response(list(data))
+
+
+@api_view(['POST'])
+def google_login(request):
+    token = request.data.get('token')
+    idinfo = id_token.verify_oauth2_token(token, requests.Request(), '916906730222-hktkvhefo2ptkq1r391vrpvthkk18rsn.apps.googleusercontent.com')
+    print(idinfo)
+    user, created = CustomUser.objects.get_or_create(email=idinfo['email'], username = idinfo['name'])
+    refresh = RefreshToken.for_user(user)
+    return Response({
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
+    }, status=status.HTTP_200_OK)
+    
