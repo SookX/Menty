@@ -50,7 +50,7 @@ const Login = () => {
             setAccess(response.data.access)
             localStorage.setItem('refresh', response.data.refresh)
             setRefresh(response.data.refresh)
-            navigate('/')
+            navigate('/dashboard')
         }
         else setError(response.response.data.error)
 
