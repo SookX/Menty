@@ -63,7 +63,7 @@ const DataProvider = ({ children }) => {
                 grid, setGrid,
                 crud,
                 navigate,
-                setAccess, setRefresh,
+                access, setAccess, setRefresh,
                 prompt, setPrompt
             }}>
 
