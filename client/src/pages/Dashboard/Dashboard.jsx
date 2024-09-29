@@ -1,8 +1,6 @@
 import './dashboard.less'
 import { createContext, useContext, useEffect, useState } from "react";
 import { DataContext } from "../../context/DataContext";
-import Input from "../../components/Input/Input";
-import LineChart from './LineChart';
 import ChartSection from './ChartSection';
 import StepSection from './StepSection';
 
@@ -11,23 +9,35 @@ export const DashboardContext = createContext({})
 
 const Dashboard = () => {
     // Gets global data from the context
-    const { navigate, crud, prompt, setPrompt } = useContext(DataContext)
+    const { navigate, crud, prompt } = useContext(DataContext)
 
 
 
     // Stores the dashboard data
     const [user, setUser] = useState(null)
     const [sentiments, setSentiments] = useState(null)
-    const [scores, setScores] = useState(null)
+    const [score, setScore] = useState(null)
+    const [anxiety, setAnxiety] = useState(null)
+    const [bipolar, setBipolar] = useState(null)
+    const [depression, setDepression] = useState(null)
+    const [personalityDisorder, setPersonalityDisorder] = useState(null)
+    const [stress, setStress] = useState(null)
+    const [suicidal, setSuicidal] = useState(null)
 
 
 
     // Gets the scores from each sentiment
     useEffect(() => {
-        if (sentiments) setScores(sentiments.map(sentiment => sentiment.score))
+        if (sentiments) {
+            setScore(sentiments.map(sentiment => sentiment.normal_score))
+            setAnxiety(sentiments.map(sentiment => sentiment.anxiety_score))
+            setBipolar(sentiments.map(sentiment => sentiment.bipolar_score))
+            setDepression(sentiments.map(sentiment => sentiment.depression_score))
+            setPersonalityDisorder(sentiments.map(sentiment => sentiment.personality_disorder_score))
+            setStress(sentiments.map(sentiment => sentiment.stress_score))
+            setSuicidal(sentiments.map(sentiment => sentiment.suicidal_score))
+        }
     }, [sentiments])
-
-    const score = [15, 1, 24, 8, 7, 5, 16, 32, 9]
 
 
 
@@ -35,10 +45,12 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true)
     const [loadingSentiment, setLoadingSentiment] = useState(false)
 
-    // Changes the loading state when everything is loaded
+    // Changes the loading state when everything is loaded and puts the scores into one array
     useEffect(() => {
-        if (user && scores) setLoading(false)
-    }, [user, scores])
+        if (user && score && anxiety && depression && bipolar && personalityDisorder && stress && suicidal) {
+            setLoading(false)
+        }
+    }, [user, score, anxiety, depression, bipolar, personalityDisorder, stress, suicidal])
 
 
 

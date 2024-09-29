@@ -12,11 +12,13 @@ const StepSection = () => {
     // Gets today's help text
     useEffect(() => {
 
-        const currentDate = new Date().toISOString().split('T')[0]
+        if(sentiments.length) {
+            const currentDate = new Date().toISOString().split('T')[0]
 
-        const current = sentiments.find(sentiment => sentiment.date.split('T')[0] === currentDate).help_text
+            const current = sentiments.find(sentiment => sentiment.date.split('T')[0] === currentDate).help_text
 
-        setText(current)
+            setText(current)
+        }
     }, [])
 
 
