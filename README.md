@@ -192,6 +192,7 @@ Of course, no one solution works for everyone. That's why Menty.AI continues to 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+<img src = "https://i.ibb.co/55rZ8Hz/gif.gif">
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -217,9 +218,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contributors
-<a href="https://github.com/SookX/Menty/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=SookX/Menty" />
-</a>
+
 
 
 
