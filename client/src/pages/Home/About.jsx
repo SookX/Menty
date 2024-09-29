@@ -20,7 +20,7 @@ const About = () => {
         <section className="full-section about" id='about'>
             <div className="about-text-box">
                 <h2>How it works</h2>
-                
+
                 <p>There are many mental health apps available, but none of them quite fit the level of personalized care and insights that users truly need. That's why Menty.AI was created—to offer an enhanced, AI-driven solution for mental wellness that feels tailored to each individual. Here's why:
                 </p>
 
@@ -33,7 +33,7 @@ const About = () => {
                 </div>
 
                 <p>
-                Of course, no one solution works for everyone. That's why Menty.AI continues to evolve. We're open to feedback and ideas from users like you, helping us make this assistant even more helpful. Feel free to suggest changes by contributing to this project or submitting feedback. Thanks to everyone who has supported the development of Menty.AI so far!
+                    Of course, no one solution works for everyone. That's why Menty.AI continues to evolve. We're open to feedback and ideas from users like you, helping us make this assistant even more helpful. Feel free to suggest changes by contributing to this project or submitting feedback. Thanks to everyone who has supported the development of Menty.AI so far!
                 </p>
             </div>
 
