@@ -121,8 +121,8 @@ Of course, no one solution works for everyone. That's why Menty.AI continues to 
 ### 1. Clone the repo
    
    ```sh
-     git clone https://github.com/your_username/your_repo_name.git
-     cd your_repo_name
+     git clone https://github.com/SookX/Menty
+     cd Menty
    ```
    
 ### 2. Setup React
