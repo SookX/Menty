@@ -6,7 +6,7 @@ import { DataContext } from "../../context/DataContext"
 import Input from "../../components/Input/Input"
 
 const ChartSection = () => {
-    const { loading, loadingSentiment, score, user, handleSubmitSentiment } = useContext(DashboardContext)
+    const { loadingSentiment, score, user, handleSubmitSentiment } = useContext(DashboardContext)
     const { prompt, setPrompt } = useContext(DataContext)
 
     return (

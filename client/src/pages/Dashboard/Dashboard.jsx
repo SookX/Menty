@@ -4,6 +4,7 @@ import { DataContext } from "../../context/DataContext";
 import Input from "../../components/Input/Input";
 import LineChart from './LineChart';
 import ChartSection from './ChartSection';
+import StepSection from './StepSection';
 
 
 export const DashboardContext = createContext({})
@@ -102,7 +103,8 @@ const Dashboard = () => {
                     <div class="loader"></div>
                     :
                     <>
-                        {/* <ChartSection /> */}
+                        <ChartSection />
+                        <StepSection />
                     </>
             }
         </DashboardContext.Provider>
