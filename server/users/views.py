@@ -132,12 +132,13 @@ def user(request):
         data = CustomUser.objects.values('id', 'last_login', 'email', 'username', 'createdAt')
         return Response(list(data))
 
+GOOGLE_OAUTH2 = os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
 
 @api_view(['POST'])
 def google_login(request):
     token = request.data.get('token')
     
-    idinfo = id_token.verify_oauth2_token(token, requests.Request(), os.getenv('GOOGLE_OAUTH2'))
+    idinfo = id_token.verify_oauth2_token(token, requests.Request(), GOOGLE_OAUTH2)
     print(idinfo)
     user, created = CustomUser.objects.get_or_create(email=idinfo['email'], username = idinfo['name'])
     Dashboard.objects.get_or_create(user = user)
