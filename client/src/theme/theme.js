@@ -3,5 +3,8 @@ import Palette from './colors/colorLogic';
 
 export const theme = createTheme({
     palette: Palette,
-    typography: Text
+    typography: Text,
+    shape: {
+        borderRadius: "10px"
+    }
 })
