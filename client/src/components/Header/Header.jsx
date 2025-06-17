@@ -1,0 +1,51 @@
+import AppBar from "@mui/material/AppBar"
+import logo from "../../img/logo.webp"
+import './header.css'
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
+import { styled } from "@mui/material/styles"
+import Toolbar from "@mui/material/Toolbar"
+import Stack from "@mui/material/Stack"
+import App from "../../App"
+
+const StyledNavlink = styled(Button)(({theme})=>({
+    fontWeight: "bold",
+    transition: ".2s",
+    '&:hover': {
+        color: theme.palette.secondary.tint2
+    }
+}))
+
+const StyledToolbar = styled(Toolbar)({
+    display: "flex",
+    justifyContent: "space-between",
+    padding: 0
+})
+
+const StyledAppBar = styled(AppBar)({
+    position: "static",
+    padding: "12px 24px"
+})
+
+const Header = () => {
+    return (
+        <StyledAppBar elevation={2} color="transparent">
+            <StyledToolbar>
+                <Stack direction={"row"} alignItems={"center"} gap={4}>
+                    <img src={logo} className="nav-logo" />
+
+                    <Box>
+                        <StyledNavlink>How it works</StyledNavlink>
+                    </Box>
+                </Stack>
+
+                <Stack direction={"row"} gap={4}>
+                    <StyledNavlink>Log in</StyledNavlink>
+                    <StyledNavlink>Sign up</StyledNavlink>
+                </Stack>
+            </StyledToolbar>
+        </StyledAppBar>
+    )
+}
+
+export default Header
