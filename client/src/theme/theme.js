@@ -1,9 +1,8 @@
 import { createTheme } from '@mui/material/styles';
+import Palette from './colors/colorLogic';
+
+
 
 export const theme = createTheme({
-    palette: {
-        primary: {
-            main: "#452D55"
-        }
-    }
+    palette: Palette
 })
