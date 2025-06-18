@@ -7,5 +7,30 @@ export const theme = createTheme({
     typography: Text,
     shape: {
         borderRadius: "10px"
+    },
+    components: {
+        MuiAppBar: {
+            styleOverrides: {
+                root: {
+                    padding: "12px 64px",
+                    boxShadow: "0 0 0.8rem rgba(0, 0, 0, 0.1)"
+                }
+            }
+        },
+        MuiToolbar: {
+            styleOverrides: {
+                dense: {
+                    minHeight: "0px"
+                }
+            }
+        },
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    textTransform: "none",
+                    fontSize: "16px"
+                },
+            }
+        }
     }
 })

@@ -11,6 +11,7 @@ import App from "../../App"
 const StyledNavlink = styled(Button)(({theme})=>({
     fontWeight: "bold",
     transition: ".2s",
+    color: theme.palette.primary.tint2,
     '&:hover': {
         color: theme.palette.secondary.tint2
     }
@@ -18,19 +19,13 @@ const StyledNavlink = styled(Button)(({theme})=>({
 
 const StyledToolbar = styled(Toolbar)({
     display: "flex",
-    justifyContent: "space-between",
-    padding: 0
-})
-
-const StyledAppBar = styled(AppBar)({
-    position: "static",
-    padding: "12px 24px"
+    justifyContent: "space-between"
 })
 
 const Header = () => {
     return (
-        <StyledAppBar elevation={2} color="transparent">
-            <StyledToolbar>
+        <AppBar position="static" elevation={2} color="transparent">
+            <StyledToolbar variant="dense" disableGutters>
                 <Stack direction={"row"} alignItems={"center"} gap={4}>
                     <img src={logo} className="nav-logo" />
 
@@ -44,7 +39,7 @@ const Header = () => {
                     <StyledNavlink>Sign up</StyledNavlink>
                 </Stack>
             </StyledToolbar>
-        </StyledAppBar>
+        </AppBar>
     )
 }
 
