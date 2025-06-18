@@ -38,6 +38,16 @@ export const theme = createTheme({
                     }
                 },
             }
+        },
+        MuiCard: {
+            styleOverrides: {
+                root: {
+                    // transiton: "0.2s",
+                    "&:hover": {
+                        transform: "scale(1.05)"
+                    }
+                }
+            }
         }
     }
 })
