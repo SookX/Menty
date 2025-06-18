@@ -29,7 +29,13 @@ export const theme = createTheme({
             styleOverrides: {
                 root: {
                     textTransform: "none",
-                    fontSize: "16px"
+                    fontSize: "16px",
+                    padding: "16px 32px",
+                    fontWeight: "bold",
+                    boxShadow: "none",
+                    "&:hover": {
+                        boxShadow: "none"
+                    }
                 },
             }
         }

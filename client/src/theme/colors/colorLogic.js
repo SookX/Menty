@@ -86,6 +86,7 @@ const Palette = {
         shade1: darken(tertiary, 10),
         shade2: darken(tertiary, 20),
         shade3: darken(tertiary, 30),
+        contrastText: "#fff"
     },
     text: {
         main: text,
