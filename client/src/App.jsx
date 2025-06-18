@@ -1,9 +1,8 @@
 import { ThemeProvider } from '@emotion/react'
-import Box from '@mui/material/Box'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { theme } from './theme/theme'
-import Typography from '@mui/material/Typography'
 import Header from './components/Header/Header'
+import Home from './pages/Home/Home'
 
 function App() {
   return (
@@ -14,7 +13,7 @@ function App() {
 
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<Typography variant='h1'>You're not alone</Typography>} />
+            <Route path='/' element={<Home />} />
           </Routes>
         </BrowserRouter> 
       </ThemeProvider>    

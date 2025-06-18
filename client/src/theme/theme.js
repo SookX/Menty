@@ -6,7 +6,8 @@ export const theme = createTheme({
     palette: Palette,
     typography: Text,
     shape: {
-        borderRadius: "10px"
+        borderRadius: "10px",
+        sectionBorderRadius: "70px"
     },
     components: {
         MuiAppBar: {
