@@ -10,7 +10,10 @@ const AboutCard = ({
         color: theme.palette[color].tint1,
         padding: "32px",
         textAlign: "center",
-        transition: ".2s"
+        transition: ".2s",
+        "&:hover": {
+            transform: "scale(1.05)"
+        }
     }))
 
     return (

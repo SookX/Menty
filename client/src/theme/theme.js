@@ -42,16 +42,15 @@ export const theme = createTheme({
                 },
             }
         },
-        MuiCard: {
-            styleOverrides: {
-                root: {
-                    // transiton: "0.2s",
-                    "&:hover": {
-                        transform: "scale(1.05)"
-                    }
-                }
-            }
-        },
+        // MuiCard: {
+        //     styleOverrides: {
+        //         root: {
+        //             "&:hover": {
+        //                 transform: "scale(1.05)"
+        //             }
+        //         }
+        //     }
+        // },
         MuiLink: {
             styleOverrides: {
                 root: {
