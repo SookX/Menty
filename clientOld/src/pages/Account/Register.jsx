@@ -64,9 +64,13 @@ const Register = () => {
                 <div className="account-form-textbox">
                     <h4 className="account-title">Make an account</h4>
 
-                    {
+                    {/* {
                         error &&
                         <p className="error">{error}</p>
+                    } */}
+                    {
+                        true &&
+                        <p className="error">test</p>
                     }
                 </div>
 

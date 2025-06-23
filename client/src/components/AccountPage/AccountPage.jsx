@@ -1,4 +1,4 @@
-import { Button, Card, Divider, Stack, styled, TextField, Typography } from "@mui/material"
+import { Button, Card, Divider, FormControl, FormHelperText, Stack, styled, TextField, Typography } from "@mui/material"
 import Section from "../../components/Section/Section"
 
 const StyledCard = styled(Card)(({theme})=>({
@@ -20,30 +20,66 @@ const StyledButton = styled(Button)({
 
 const AccountPage = ({
     title="Log in to your account",
+    errorMsg=null,
     inputs=[{
         label: "Email",
-        type: "email"
+        type: "email",
+        value: null,
+        setValue: () => {}
     }],
     button="Log in to my account",
-    oauth=[]
+    oauth=[],
+    handleSubmit = async (e) => {}
 }) => {
     return (
         <Section>
             <StyledCard>
-                <Typography variant="h4" mb={4} color="primary">{title}</Typography>
+                <Typography variant="h4" color="primary">{title}</Typography>
 
-                <Stack gap={1.5}>
-                    {/* <TextField color="primary" variant="outlined" label="Email" type="email" />
-                    <TextField color="primary" variant="outlined" label="Password" type="password" /> */}
-                    {
-                        inputs.map((input, i) => (
-                            <TextField key={i} color="primary" variant="outlined" label={input.label} type={input.type} />
-                        ))
-                    }
+                {
+                    errorMsg &&
+                    <FormHelperText 
+                        sx={{ 
+                            textAlign: "center",
+                            fontSize: "16px",
+                            fontStyle: "italic", 
+                            fontWeight: "bold" 
+                        }} 
+                        error
+                    >
+                        {errorMsg}
+                    </FormHelperText>
+                }
+                <FormControl fullWidth>
 
-                    <StyledButton variant="contained" color="primary">{button}</StyledButton>
+                    <Stack gap={1.5} mt={4}>
+                        {/* <TextField color="primary" variant="outlined" label="Email" type="email" />
+                        <TextField color="primary" variant="outlined" label="Password" type="password" /> */}
+                        {
+                            inputs.map((input, i) => (
+                                <TextField
+                                    key={i}
+                                    color="primary"
+                                    variant="outlined"
+                                    label={input.label}
+                                    type={input.type} 
+                                    value={input.value}
+                                    onChange={(e) => input.setValue(e.target.value)}
+                                />
+                            ))
+                        }
 
-                </Stack>
+                        <StyledButton
+                            type="submit"
+                            variant="contained"
+                            color="primary" 
+                            onClick={(e) => handleSubmit(e)}
+                        >
+                            {button}
+                        </StyledButton>
+                    </Stack>
+
+                </FormControl>
 
                 {
                     oauth.length > 0 &&

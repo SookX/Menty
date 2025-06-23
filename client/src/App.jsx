@@ -10,19 +10,19 @@ import DataProvider from './context/DataContext'
 function App() {
   return (
     <>
-      <DataProvider>
         <ThemeProvider theme={theme}>
           <Header />
 
           <BrowserRouter>
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<Register />} />
-            </Routes>
+            <DataProvider>
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
+              </Routes>
+            </DataProvider>
           </BrowserRouter> 
         </ThemeProvider>    
-      </DataProvider>
     </>
   )
 }
