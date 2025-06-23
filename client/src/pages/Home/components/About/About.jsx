@@ -5,7 +5,7 @@ import Info from "./components/Info/Info"
 
 const About = () => {
     return (
-        <HomeSection color="primary">
+        <HomeSection id="about" color="primary">
             <Stack direction={"row"} justifyContent={"space-between"} gap={3} alignItems={"center"}>
                 <Info />
                 <img src={about} alt="Umbrella" className="about-img" />

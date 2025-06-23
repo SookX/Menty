@@ -6,10 +6,13 @@ import Button from "@mui/material/Button"
 import { styled } from "@mui/material/styles"
 import Toolbar from "@mui/material/Toolbar"
 import Stack from "@mui/material/Stack"
-import App from "../../App"
+import { Link, Typography } from "@mui/material"
+import { HashLink } from 'react-router-hash-link'
 
-const StyledNavlink = styled(Button)(({theme})=>({
+const StyledNavlink = styled(Link)(({theme})=>({
     fontWeight: "bold",
+    textDecoration: "none",
+    cursor: "pointer",
     transition: ".2s",
     color: theme.palette.primary.tint2,
     '&:hover': {
@@ -24,19 +27,19 @@ const StyledToolbar = styled(Toolbar)({
 
 const Header = () => {
     return (
-        <AppBar position="static" elevation={2} color="transparent">
+        <AppBar position="sticky" elevation={2} color="transparent">
             <StyledToolbar variant="dense" disableGutters>
                 <Stack direction={"row"} alignItems={"center"} gap={4}>
                     <img src={logo} className="nav-logo" />
 
                     <Box>
-                        <StyledNavlink>How it works</StyledNavlink>
+                        <StyledNavlink href="/#about">How it works</StyledNavlink>
                     </Box>
                 </Stack>
 
                 <Stack direction={"row"} gap={4}>
-                    <StyledNavlink>Log in</StyledNavlink>
-                    <StyledNavlink>Sign up</StyledNavlink>
+                    <StyledNavlink href="/login">Log in</StyledNavlink>
+                    <StyledNavlink href="/register">Sign up</StyledNavlink>
                 </Stack>
             </StyledToolbar>
         </AppBar>

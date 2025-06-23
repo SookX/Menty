@@ -51,6 +51,7 @@ const lighten = (color = "#fff", amount) => { return adjustColor(color, amount) 
 const darken = (color = "#fff", amount) => { return adjustColor(color, -amount) }
 
 const primary = "#452D55"
+// const primary = "#fff"
 const secondary = "#463813"
 const tertiary = "#f8d9a0"
 const text = "#211E24"
@@ -97,6 +98,9 @@ const Palette = {
         tint5: lighten(text, 50),
         tint6: lighten(text, 60),
         tint7: lighten(text, 70),
+    },
+    background: {
+        main: "#fff"
     }
 } 
 

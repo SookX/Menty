@@ -15,6 +15,9 @@ export const theme = createTheme({
                 root: {
                     padding: "12px 64px",
                     boxShadow: "0 0 0.8rem rgba(0, 0, 0, 0.1)"
+                },
+                colorTransparent: {
+                    background: Palette.background.main
                 }
             }
         },
@@ -46,6 +49,13 @@ export const theme = createTheme({
                     "&:hover": {
                         transform: "scale(1.05)"
                     }
+                }
+            }
+        },
+        MuiLink: {
+            styleOverrides: {
+                root: {
+                    fontFamily: ["Nunito", 'sans-serif'].join(",")
                 }
             }
         }

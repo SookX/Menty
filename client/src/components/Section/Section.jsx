@@ -4,9 +4,9 @@ const StyledSection = styled(Box)({
     minHeight: "100vh",
 })
 
-const Section = ({ children }) => {
+const Section = ({ children, id="" }) => {
     return (
-        <StyledSection>
+        <StyledSection id={id}>
             {children}
         </StyledSection>
     )

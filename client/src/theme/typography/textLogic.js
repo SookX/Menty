@@ -14,7 +14,12 @@ const Text = {
     h2: headingStyle,
     h3: headingStyle,
     h4: headingStyle,
-    h5: headingStyle
+    h5: headingStyle,
+    Link: {
+        fontFamily: ["Nunito", 'sans-serif'].join(","),
+        textDecoration: "none",
+        cursor: "pointer"
+    }
 }
 
 export default Text
