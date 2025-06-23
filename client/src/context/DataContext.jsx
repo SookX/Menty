@@ -49,7 +49,8 @@ const DataProvider = ({ children }) => {
     return (
         <DataContext.Provider
             value={{
-                crud, navigate
+                crud, navigate,
+                setAccess, setRefresh
             }}
         >
             {children}

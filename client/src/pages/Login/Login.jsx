@@ -1,18 +1,64 @@
+import { useContext } from "react"
 import AccountPage from "../../components/AccountPage/AccountPage"
 import { Google } from "@mui/icons-material"
+import { DataContext } from "../../context/DataContext"
+import { useState } from "react"
 
 const Login = () => {
+    // Gets global data from the context
+    const { crud, navigate, setAccess, setRefresh } = useContext(DataContext)
+
+
+
+    // Holds the state for the form
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [error, setError] = useState(null)
+
+
+
+    // Makes a crud request to the backend to register the user
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        
+        const response = await crud({
+            method: 'post',
+            url: '/login/',
+            body: {
+                email,
+                password
+            }
+        })
+
+        if (response.status === 200) {
+            localStorage.setItem('access', response.data.access);
+            setAccess(response.data.access);
+            localStorage.setItem('refresh', response.data.refresh);
+            setRefresh(response.data.refresh);
+            navigate('/dashboard');
+        } else {
+            setError(response.response.data.error);
+        }
+    }
+
+
+
     return (
         <AccountPage
             title="Log in to your account"
+            errorMsg={error}
             inputs={[
                 {
                     label: "Email",
-                    type: "email"
+                    type: "email",
+                    value: email,
+                    setValue: setEmail
                 },
                 {
                     label: "Password",
-                    type: "password"
+                    type: "password",
+                    value: password,
+                    setValue: setPassword
                 },
             ]}
             button="Log in to my account"
@@ -22,6 +68,7 @@ const Login = () => {
                     icon: (<Google />)
                 }
             ]}
+            handleSubmit={handleSubmit}
         />
     )
 }
