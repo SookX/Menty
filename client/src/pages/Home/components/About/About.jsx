@@ -6,12 +6,12 @@ import Info from "./components/Info/Info"
 const StyledStack = styled(Stack)(({ theme })=>({
     [theme.breakpoints.up("lg")]: { 
         flexDirection: "row",
-        gap: "24px"
+        gap: theme.spacing(3)
     },
 
     justifyContent: "space-between",
     alignItems: "center",
-    gap: "48px",
+    gap: theme.spacing(6),
 
     [theme.breakpoints.down("md")]: {
         textAlign: "center"

@@ -8,7 +8,7 @@ const AboutCard = ({
     const StyledCard = styled(Card)(({theme})=>({
         background: theme.palette[color].tint5,
         color: theme.palette[color].tint1,
-        padding: "32px",
+        padding: theme.spacing(4),
         width: "100%",
         textAlign: "center",
         transition: ".2s",
@@ -19,7 +19,7 @@ const AboutCard = ({
 
     return (
         <StyledCard>
-            <Typography mb={"12px"} variant="h5" color={`${color}.${color === "primary" ? "tint1" : "main"}`}>{title}</Typography>
+            <Typography mb={1.5} variant="h5" color={`${color}.${color === "primary" ? "tint1" : "main"}`}>{title}</Typography>
             <Typography variant="body2">{text}</Typography>
         </StyledCard>
     )

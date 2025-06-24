@@ -15,10 +15,10 @@ import Loader from "./components/Loader/Loader"
 export const DashboardContext = createContext({  })
 
 const StyledGrid = styled(Grid)(({theme})=>({
-    padding: "48px 64px",
-    [theme.breakpoints.down("md")]: { padding: "48px 32px" },
-    [theme.breakpoints.down("sm")]: { padding: "32px 16px" },
-    paddingTop: "128px",
+    padding: `${theme.spacing(6)} ${theme.spacing(8)}`,
+    [theme.breakpoints.down("md")]: { padding: `${theme.spacing(6)} ${theme.spacing(4)}` },
+    [theme.breakpoints.down("sm")]: { padding: `${theme.spacing(4)} ${theme.spacing(2)}` },
+    paddingTop: theme.spacing(16),
     alignItems: "stretch"
 }))
 
@@ -26,7 +26,7 @@ const Dashboard = () => {
     // Holds the styles for each section
     const StyledCard = styled(Card)(({theme})=>({
         borderRadius: theme.shape.sectionBorderRadius,
-        padding: "40px",
+        padding: theme.spacing(5),
         width: "100%",
 
         [theme.breakpoints.down("md")]: { textAlign: "center" }

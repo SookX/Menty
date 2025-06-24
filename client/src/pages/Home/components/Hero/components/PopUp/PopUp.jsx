@@ -4,7 +4,7 @@ import dashboard from '../../../../../../img/dashboard.webp'
 
 const StyledCard = styled(Card)(({theme})=>({
     textAlign: "center",
-    padding: "32px",
+    padding: theme.spacing(4),
     
     display: "flex",
     flexDirection: "column",

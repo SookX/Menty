@@ -8,8 +8,8 @@ import { theme } from "../../../../../../theme/theme";
 const ChartContainer = styled(Box)(({theme})=>({
     border: `solid 1px ${theme.palette.primary.tint3}`,
     borderRadius: theme.shape.borderRadius,
-    padding: "32px",
-    minHeight: "320px",
+    padding: theme.spacing(4),
+    minHeight: theme.spacing(40),
     flexGrow: 1
 }))
 

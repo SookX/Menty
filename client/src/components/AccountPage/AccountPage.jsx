@@ -7,14 +7,14 @@ const StyledCard = styled(Card)(({theme})=>({
     width: "80%",
     [theme.breakpoints.up("sm")]: { 
         width: "70%",
-        padding: "48px"
+        padding: theme.spacing(6)
     },
     [theme.breakpoints.up("md")]: { width: "60%" },
     [theme.breakpoints.up("lg")]: { width: "40%" },
     
     margin: "0 auto",
-    padding: "24px",
-    marginTop: "128px"
+    padding: theme.spacing(3),
+    marginTop: theme.spacing(16)
 }))
 
 const StyledButton = styled(Button)({
@@ -44,7 +44,7 @@ const AccountPage = ({
                     <FormHelperText 
                         sx={{ 
                             textAlign: "center",
-                            fontSize: "16px",
+                            fontSize: 16,
                             fontStyle: "italic", 
                             fontWeight: "bold" 
                         }} 

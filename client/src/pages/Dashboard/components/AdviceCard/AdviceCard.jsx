@@ -26,12 +26,12 @@ const AdviceCard = () => {
         display: "flex",
         flexDirection: "column",
 
-        paddingLeft: "32px",
-        paddingRight: "32px",
+        paddingLeft: theme.spacing(4),
+        paddingRight: theme.spacing(4),
 
         [theme.breakpoints.up("md")]: {
-            paddingLeft: "156px",
-            paddingRight: "156px",
+            paddingLeft: theme.spacing(19.5),
+            paddingRight: theme.spacing(19.5),
         }
     }))
 
