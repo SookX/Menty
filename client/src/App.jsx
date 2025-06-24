@@ -12,9 +12,9 @@ function App() {
   return (
     <>
         <ThemeProvider theme={theme}>
-          <Header />
 
           <BrowserRouter>
+            <Header />
             <DataProvider>
               <Routes>
                 <Route path='/' element={<Home />} />

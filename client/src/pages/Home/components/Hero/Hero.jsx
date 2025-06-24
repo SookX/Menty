@@ -27,15 +27,6 @@ const Hero = () => {
     // Holds the reference for the input
     const inputRef = useRef()
 
-    
-
-    // Sets the prompt on derender
-    useEffect(() => {
-        return () => {
-            setPrompt(inputRef.current.value)
-        }
-    }, [])
-
 
 
     return (
@@ -58,7 +49,7 @@ const Hero = () => {
                         inputRef={inputRef}
                     />
 
-                    <Button variant="contained" color="tertiary">Analyze my mental health</Button>
+                    <Button onClick={() => setPrompt(inputRef.current.value)} variant="contained" color="tertiary">Analyze my mental health</Button>
                 </Stack>
             </StyledContainer>
         </HomeSection>

@@ -8,6 +8,7 @@ import Toolbar from "@mui/material/Toolbar"
 import Stack from "@mui/material/Stack"
 import { Link, Typography } from "@mui/material"
 import { HashLink } from 'react-router-hash-link'
+import { Link as ReactLink } from 'react-router-dom'
 
 const StyledNavlink = styled(Link)(({theme})=>({
     fontWeight: "bold",
@@ -33,13 +34,13 @@ const Header = () => {
                     <img src={logo} className="nav-logo" />
 
                     <Box>
-                        <StyledNavlink href="/#about">How it works</StyledNavlink>
+                        <StyledNavlink component={HashLink} to="/#about">How it works</StyledNavlink>
                     </Box>
                 </Stack>
 
                 <Stack direction={"row"} gap={4}>
-                    <StyledNavlink href="/login">Log in</StyledNavlink>
-                    <StyledNavlink href="/register">Sign up</StyledNavlink>
+                    <StyledNavlink component={ReactLink} to="/login">Log in</StyledNavlink>
+                    <StyledNavlink component={ReactLink} to="/register">Sign up</StyledNavlink>
                 </Stack>
             </StyledToolbar>
         </AppBar>
