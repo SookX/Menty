@@ -33,7 +33,7 @@ const PromptCard = () => {
             </Box>
 
             <TextField color="tertiary" fullWidth rows={7} multiline />
-            <Button variant="contained" color="tertiary">Submit</Button>
+            <Button variant="contained" fullWidth color="tertiary">Submit</Button>
         </StyledPromptCard>
     )
 }

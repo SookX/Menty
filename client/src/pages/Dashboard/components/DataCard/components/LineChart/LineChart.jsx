@@ -10,6 +10,7 @@ const ChartContainer = styled(Box)(({theme})=>({
     borderRadius: theme.shape.borderRadius,
     padding: "32px",
     minHeight: "320px",
+    flexGrow: 1
 }))
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);

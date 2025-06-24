@@ -23,7 +23,7 @@ const Dashboard = () => {
     const StyledCard = styled(Card)(({theme})=>({
         borderRadius: theme.shape.sectionBorderRadius,
         padding: "40px",
-        // height: "100%"
+        width: "100%"
     }))
 
 
@@ -94,14 +94,14 @@ const Dashboard = () => {
                 <StyledGrid container rowSpacing={4} columnSpacing={6}>
                     {
                         user &&
-                        <Grid size={7.2}>
+                        <Grid sx={{ display: "flex" }} size={7.2}>
                             <DataCard />
                         </Grid>
                     }
-                    <Grid size={4.8}>
+                    <Grid sx={{ display: "flex" }} size={4.8}>
                         <PromptCard />
                     </Grid>
-                    <Grid size={"grow"}>
+                    <Grid sx={{ display: "flex" }} size={"grow"}>
                         <AdviceCard />
                     </Grid>
                 </StyledGrid>

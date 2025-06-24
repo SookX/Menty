@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { DashboardContext } from "../../Dashboard"
-import { Box, styled, Typography } from "@mui/material"
+import { Box, Stack, styled, Typography } from "@mui/material"
 import LineChart from "./components/LineChart/LineChart"
 import { theme } from "../../../../theme/theme"
 
@@ -13,7 +13,10 @@ const DataCard = () => {
     // Applies specific styles to the section
     const StyledDataCard = styled(StyledCard)(({theme})=>({
         backgroundColor: theme.palette.primary.tint8,
-        color: theme.palette.text.tint3
+        color: theme.palette.text.tint3,
+
+        display: "flex",
+        flexDirection: "column"
     }))
 
 
