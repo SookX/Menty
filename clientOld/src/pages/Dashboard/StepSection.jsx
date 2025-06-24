@@ -15,7 +15,7 @@ const StepSection = () => {
         if(sentiments.length) {
             const currentDate = new Date().toISOString().split('T')[0]
 
-            const current = sentiments.find(sentiment => sentiment.date.split('T')[0] === currentDate).help_text
+            const current = sentiments.find(sentiment => sentiment.date.split('T')[0] === currentDate)?.help_text
 
             setText(current)
         }
@@ -27,25 +27,27 @@ const StepSection = () => {
     const [formatted, setFormatted] = useState([])
 
     useEffect(() => {
-        let paragraphs = text.split('\n')
-        paragraphs = paragraphs.map(paragraph => {
-            return {
-                type: paragraph[0] === '*' ? 'title' : 'paragraph',
-                text: paragraph
-            }
-        })
-        paragraphs = paragraphs.map(paragraph => {
-            if(paragraph.type === 'title') {
-                const newText = paragraph.text.replace(/\*/g, '')
+        if(text) {
+            let paragraphs = text.split('\n')
+            paragraphs = paragraphs.map(paragraph => {
                 return {
-                    type: 'title',
-                    text: newText
+                    type: paragraph[0] === '*' ? 'title' : 'paragraph',
+                    text: paragraph
                 }
-            }
-            else return paragraph
-        })
+            })
+            paragraphs = paragraphs.map(paragraph => {
+                if(paragraph.type === 'title') {
+                    const newText = paragraph.text.replace(/\*/g, '')
+                    return {
+                        type: 'title',
+                        text: newText
+                    }
+                }
+                else return paragraph
+            })
 
-        setFormatted(paragraphs)
+            setFormatted(paragraphs)
+        }
     }, [text])
 
 
