@@ -86,3 +86,10 @@ theme.components.MuiButton.styleOverrides = {
         }
     }
 }
+
+theme.components.MuiAppBar.styleOverrides.root = {
+    ...theme.components.MuiAppBar.styleOverrides.root,
+    [theme.breakpoints.down("sm")]: { 
+        padding: "12px 24px" 
+    }
+}
