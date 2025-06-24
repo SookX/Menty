@@ -1,21 +1,17 @@
-import { createContext, useEffect, useState } from "react";
-import axios from 'axios'
+import { createContext, useState } from "react";
+import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-export const DataContext = createContext({})
+export const DataContext = createContext({ })
 
 const DataProvider = ({ children }) => {
-    // Holds the prompt to the AI
-    const [prompt, setPrompt] = useState('')
+    // Sets the url for the backend server
+    axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
 
 
 
-    // Boolean for weather the layout grid is shown or not
-    const [grid, setGrid] = useState(false)
-
-
-
-    // Function for navigating users across pages
+    // Navigates users to different routes
     const navigate = useNavigate()
 
 
@@ -23,11 +19,6 @@ const DataProvider = ({ children }) => {
     // Gets the JWT tokens if the user has logged in
     const [refresh, setRefresh] = useState(localStorage.getItem('refresh') || null)
     const [access, setAccess] = useState(localStorage.getItem('access') || null)
-
-
-
-    // Sets the url for the backend server
-    axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
 
 
 
@@ -58,17 +49,20 @@ const DataProvider = ({ children }) => {
 
 
 
+    // Holds the state for the prompt
+    const [prompt, setPrompt] = useState("")
+
+
+
     return (
-        <DataContext.Provider value={{
-                grid, setGrid,
-                crud,
-                navigate,
+        <DataContext.Provider
+            value={{
+                crud, navigate,
                 access, setAccess, setRefresh,
                 prompt, setPrompt
-            }}>
-
+            }}
+        >
             {children}
-
         </DataContext.Provider>
     )
 }

@@ -1,19 +1,52 @@
-import './dashboard.less'
-import { createContext, useContext, useEffect, useState } from "react";
-import { DataContext } from "../../context/DataContext";
-import ChartSection from './ChartSection';
-import StepSection from './StepSection';
+import { useEffect } from "react"
+import Section from "../../components/Section/Section"
+import { useContext } from "react"
+import { DataContext } from "../../context/DataContext"
+import { useState } from "react"
+import { Box, Card, Grid, styled, Typography } from "@mui/material"
+import DataCard from "./components/DataCard/DataCard"
+import PromptCard from "./components/PromptCard/PromptCard"
+import AdviceCard from "./components/AdviceCard/AdviceCard"
+import { createContext } from "react"
+import './dashboard.css'
+import { useRef } from "react"
+import Loader from "./components/Loader/Loader"
 
+export const DashboardContext = createContext({  })
 
-export const DashboardContext = createContext({})
+const StyledGrid = styled(Grid)(({theme})=>({
+    padding: `${theme.spacing(6)} ${theme.spacing(8)}`,
+    [theme.breakpoints.down("md")]: { padding: `${theme.spacing(6)} ${theme.spacing(4)}` },
+    [theme.breakpoints.down("sm")]: { padding: `${theme.spacing(4)} ${theme.spacing(2)}` },
+    paddingTop: theme.spacing(16),
+    alignItems: "stretch"
+}))
 
 const Dashboard = () => {
+    // Holds the styles for each section
+    const StyledCard = styled(Card)(({theme})=>({
+        borderRadius: theme.shape.sectionBorderRadius,
+        padding: theme.spacing(5),
+        width: "100%",
+
+        [theme.breakpoints.down("md")]: { textAlign: "center" }
+    }))
+
+
+
     // Gets global data from the context
-    const { navigate, crud, prompt } = useContext(DataContext)
+    const { crud, navigate, access } = useContext(DataContext)
 
 
 
-    // Stores the dashboard data
+    // Navigates users to dashboard if they are logged in
+    useEffect(() => {
+        if(!access) navigate('/login')
+    }, [access])
+
+
+
+    // Holds the state for the dashboard
     const [user, setUser] = useState(null)
     const [sentiments, setSentiments] = useState(null)
     const [score, setScore] = useState(null)
@@ -24,6 +57,16 @@ const Dashboard = () => {
     const [stress, setStress] = useState(null)
     const [suicidal, setSuicidal] = useState(null)
     const [dates, setDates] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+
+
+    // Changes the loading state when everything is loaded
+    useEffect(() => {
+        if (user && score && anxiety && depression && bipolar && personalityDisorder && stress && suicidal && dates) {
+            setLoading(false)
+        }
+    }, [user, score, anxiety, depression, bipolar, personalityDisorder, stress, suicidal, dates])
 
 
 
@@ -43,33 +86,15 @@ const Dashboard = () => {
 
 
 
-    // Stores the loading state
-    const [loading, setLoading] = useState(true)
-    const [loadingSentiment, setLoadingSentiment] = useState(false)
-
-    // Changes the loading state when everything is loaded and puts the scores into one array
-    useEffect(() => {
-        if (user && score && anxiety && depression && bipolar && personalityDisorder && stress && suicidal && dates) {
-            setLoading(false)
-        }
-    }, [user, score, anxiety, depression, bipolar, personalityDisorder, stress, suicidal, dates])
-
-
-
-    // Checks if user is not logged in
-    useEffect(() => {
-        if (!localStorage.getItem('access')) navigate('/login')
-    }, [])
-
-
-
-    // Gets the dashboard data from the backend
+    // Gets the data from the backend on init
     useEffect(() => {
         const fetching = async () => {
             const response = await crud({
                 method: 'get',
                 url: '/sentiment/'
             })
+
+            console.log(response)
 
             if (response.status == 200) {
                 setUser(response.data.user)
@@ -86,8 +111,8 @@ const Dashboard = () => {
     const [disabled, setDisabled] = useState(false)
 
     // Stores the remaining time till the button can be clicked again
-    const [remainingTime, setRemainingTime] = useState(0)
-    const [remainingString, setRemainingString] = useState('')
+    const remainingTime = useRef(0)
+    const remainingString = useRef('')
 
     // Stores the time for which the button will be disabled
     const time = 86400000
@@ -101,10 +126,17 @@ const Dashboard = () => {
 
             if (timeElapsed < time) {
                 setDisabled(true);
-                setRemainingTime(time - timeElapsed); 
+                remainingTime.current = time - timeElapsed
             }
         }
     }, []);
+
+    // Get time string from the remaining time
+    const getRemainingTimeString = () => {
+        const hours = Math.floor((remainingTime.current / 3600000) % 24);
+        const minutes = Math.floor((remainingTime.current / 60000) % 60);
+        remainingString.current = `${hours} hour(s) and ${minutes} minute(s)`
+    }
 
     // Start a countdown
     useEffect(() => {
@@ -112,72 +144,52 @@ const Dashboard = () => {
 
         if (disabled) {
             timer = setInterval(() => {
-                setRemainingTime((prevTime) => {
-                    if (prevTime <= 1000) {
-                        clearInterval(timer)
-                        setDisabled(false)
-                        return 0;
-                    }
-                    return prevTime - 1000;
-                });
+                if (remainingTime.current <= 1000) {
+                    clearInterval(timer)
+                    setDisabled(false)
+                    remainingTime.current = 0
+                }
+                else remainingTime.current = remainingTime.current - 1000
+                getRemainingTimeString()
             }, 1000);
         }
 
         return () => clearInterval(timer)
     }, [disabled]);
 
-    // Get time string from the remaining time
-    const getRemainingTimeString = () => {
-        const hours = Math.floor((remainingTime / 3600000) % 24);
-        const minutes = Math.floor((remainingTime / 60000) % 60);
-        setRemainingString(`${hours} hour(s) and ${minutes} minute(s)`)
-    }
-
     useEffect(() => {
         getRemainingTimeString()
-    }, [remainingTime])
+    }, [remainingTime.current])
 
-
-
-    // Makes a request to the backend with the new sentiment
-    const handleSubmitSentiment = async () => {
-        setLoadingSentiment(true)
-
-        const obj = {
-            emotion: prompt
-        }
-
-        const response = await crud({
-            method: "post",
-            url: '/sentiment/',
-            body: obj
-        })
-
-        if(response.status == 201) {
-            localStorage.setItem('lastClicked', new Date().getTime())
-            setDisabled(true)
-            setRemainingTime(time)
-            window.location.reload(false)
-        }
-
-        setLoadingSentiment(false)
-    }
 
 
     return (
         <DashboardContext.Provider value={{
-            loading, user, loadingSentiment, handleSubmitSentiment, sentiments,
+            StyledCard,
+            user, sentiments,
             score, anxiety, bipolar, depression, suicidal, personalityDisorder, stress, dates,
-            disabled, remainingString
+            disabled, setDisabled, remainingTime, remainingString
         }}>
             {
                 loading ?
-                    <div class="loader"></div>
-                    :
-                    <>
-                        <ChartSection />
-                        <StepSection />
-                    </>
+                <Loader />
+                :
+                <Section>
+                    <StyledGrid container rowSpacing={4} columnSpacing={6}>
+                        {
+                            user &&
+                            <Grid sx={{ display: "flex" }} size={{ xs: 12, lg: 7.2}}>
+                                <DataCard />
+                            </Grid>
+                        }
+                        <Grid sx={{ display: "flex" }} size={{ xs: 12, lg: 4.8}}>
+                            <PromptCard />
+                        </Grid>
+                        <Grid sx={{ display: "flex" }} size={12}>
+                            <AdviceCard />
+                        </Grid>
+                    </StyledGrid>
+                </Section>
             }
         </DashboardContext.Provider>
     )

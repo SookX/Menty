@@ -1,6 +1,6 @@
-import About from "./About"
-import Hero from "./Hero"
-import './home.less'
+import About from "./components/About/About"
+import Hero from "./components/Hero/Hero"
+import './home.css'
 
 const Home = () => {
     return (

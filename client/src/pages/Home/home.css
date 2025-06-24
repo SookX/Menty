@@ -1,0 +1,10 @@
+.hero-img, .about-img {
+    width: 320px;
+    margin-bottom: 12px;
+}
+
+@media ( max-width: 600px ) {
+    .hero-img, .about-img {
+        width: 240px;
+    }
+}

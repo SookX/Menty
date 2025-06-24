@@ -1,55 +1,117 @@
-import './header.less'
-import logo from '../../img/logo.png'
-import pfp from '../../img/pfp.png'
-import { Link } from 'react-router-dom'
+import AppBar from "@mui/material/AppBar"
+import logo from "../../img/logo.webp"
+import './header.css'
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
+import { styled } from "@mui/material/styles"
+import Toolbar from "@mui/material/Toolbar"
+import Stack from "@mui/material/Stack"
+import { Divider, Drawer, Link, Typography } from "@mui/material"
 import { HashLink } from 'react-router-hash-link'
-import { useContext } from 'react'
-import { DataContext } from '../../context/DataContext'
+import { Link as ReactLink } from 'react-router-dom'
+import { useContext } from "react"
+import { DataContext } from "../../context/DataContext"
+import { Draw, Menu } from "@mui/icons-material"
+import { useState } from "react"
+import logoTab from '../../img/logoTab.webp'
+
+const StyledNavlink = styled(Link)(({theme})=>({
+    fontWeight: "bold",
+    textDecoration: "none",
+    cursor: "pointer",
+    transition: ".2s",
+    color: theme.palette.primary.tint2,
+    '&:hover': {
+        color: theme.palette.secondary.tint2
+    }
+}))
+
+const StyledToolbar = styled(Toolbar)({
+    display: "flex",
+    justifyContent: "space-between"
+})
+
+const StyledDrawer = styled(Box)(({theme})=>({
+    padding: theme.spacing(2),
+    paddingRight: theme.spacing(5)
+}))
 
 const Header = () => {
     // Gets global data from the context
-    const { navigate, access, setAccess, setRefresh } = useContext(DataContext)
+    const { access, setAccess, setRefresh, navigate } = useContext(DataContext)
 
 
 
-    // Log out
+    // Deletes the authentication tokens of the user
     const handleLogOut = () => {
         localStorage.removeItem('access')
         localStorage.removeItem('refresh')
         setAccess(null)
         setRefresh(null)
-        navigate('/')
+        navigate('/login')
     }
 
 
 
-    return (
-        <header className="header">
-            <nav className='nav'>
-                <HashLink to='/#'><img src={logo} alt="Menty Logo" className='nav-logo' /></HashLink>
-                <HashLink className='nav-link' to='/#about'>How it works</HashLink>
-                {
-                    access &&
-                    <Link to='/dashboard' className='nav-link'>Dashboard</Link>
-                }
-            </nav>
+    // Holds the state for the mobile menu
+    const [open, setOpen] = useState(false)
 
-            <nav className="nav">
-                {/* <img src={pfp} alt="Default Profile Picture" className='nav-pfp' /> */}
+
+
+    return (
+        <AppBar position="sticky" elevation={2} color="transparent">
+            <StyledToolbar sx={{ display: { xs: "none", sm: "flex" } }} variant="dense" disableGutters>
+                <Stack direction={"row"} alignItems={"center"} gap={4}>
+                    <ReactLink to='/'><img src={logo} className="nav-logo" /></ReactLink>
+
+                    <Stack direction={"row"} gap={4}>
+                        <StyledNavlink component={HashLink} to="/#about">How it works</StyledNavlink>
+                        { access && <StyledNavlink component={ReactLink} to="/dashboard">Dashboard</StyledNavlink> }
+                    </Stack>
+                </Stack>
+
                 {
                     access ?
-                    <>
-                        <Link to='/' className='nav-link' onClick={handleLogOut}>Log out</Link>
-                    </>
+                    <StyledNavlink onClick={handleLogOut}>Log out</StyledNavlink>
                     :
-                    <>
-                        <Link to='/login' className='nav-link'>Log in</Link>
-                        <Link to='/register' className='nav-link'>Sign up</Link>
-                    </>
-
+                    <Stack direction={"row"} gap={4}>
+                        <StyledNavlink component={ReactLink} to="/login">Log in</StyledNavlink>
+                        <StyledNavlink component={ReactLink} to="/register">Sign up</StyledNavlink>
+                    </Stack>
                 }
-            </nav>
-        </header>
+            </StyledToolbar>
+
+            <StyledToolbar sx={{ display: { xs: "flex", sm: "none" } }} variant="dense" disableGutters>
+                <ReactLink to='/'><img src={logo} className="nav-logo" /></ReactLink>
+
+                <Menu onClick={() => setOpen(!open)} sx={{ color: "primary.tint2" }} />
+
+                <Drawer sx={{ display: { xs: "flex", sm: "none" } }} open={open} onClick={() => setOpen(false)}>
+                    <StyledDrawer>
+                        <img className="mobile-logo" src={logo} alt="Menty.AI logo" />
+
+                        <Divider sx={{ marginTop: 2, marginBottom: 2 }} fullWidth orientation="horizontal" textAlign="center"/>
+
+                        <Stack gap={1}>
+                            <StyledNavlink component={HashLink} to="/#about">How it works</StyledNavlink>
+                            { access && <StyledNavlink component={ReactLink} to="/dashboard">Dashboard</StyledNavlink> }
+                        </Stack>
+
+                        <Divider sx={{ marginTop: 2, marginBottom: 2 }} fullWidth orientation="horizontal" textAlign="center"/>
+
+                        {
+                            access ?
+                            <StyledNavlink onClick={handleLogOut}>Log out</StyledNavlink>
+                            :
+                            <Stack gap={1}>
+                                <StyledNavlink component={ReactLink} to="/login">Log in</StyledNavlink>
+                                <StyledNavlink component={ReactLink} to="/register">Sign up</StyledNavlink>
+                            </Stack>
+                        }
+                    </StyledDrawer>
+                </Drawer>
+            </StyledToolbar>
+        </AppBar>
     )
 }
 

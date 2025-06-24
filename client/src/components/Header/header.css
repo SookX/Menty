@@ -1,0 +1,10 @@
+.nav-logo {
+    width: 128px;
+    cursor: pointer;
+}
+
+.mobile-logo {
+    width: 128px;
+    /* padding-left: 8px; */
+    padding-bottom: 0;
+}
