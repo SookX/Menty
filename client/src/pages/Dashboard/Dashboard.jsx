@@ -34,7 +34,14 @@ const Dashboard = () => {
 
 
     // Gets global data from the context
-    const { crud } = useContext(DataContext)
+    const { crud, navigate, access } = useContext(DataContext)
+
+
+
+    // Navigates users to dashboard if they are logged in
+    useEffect(() => {
+        if(!access) navigate('/login')
+    }, [access])
 
 
 

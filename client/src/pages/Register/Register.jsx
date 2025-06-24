@@ -4,7 +4,14 @@ import { DataContext } from "../../context/DataContext"
 
 const Register = () => {
     // Gets global data from the context
-    const { crud, navigate } = useContext(DataContext)
+    const { crud, navigate, access } = useContext(DataContext)
+
+
+
+    // Navigates users to dashboard if they are logged in
+    useEffect(() => {
+        if(access) navigate('/dashboard')
+    }, [access])
 
 
 

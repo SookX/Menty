@@ -3,10 +3,18 @@ import AccountPage from "../../components/AccountPage/AccountPage"
 import { Google } from "@mui/icons-material"
 import { DataContext } from "../../context/DataContext"
 import { useState } from "react"
+import { useEffect } from "react"
 
 const Login = () => {
     // Gets global data from the context
-    const { crud, navigate, setAccess, setRefresh } = useContext(DataContext)
+    const { crud, navigate, access, setAccess, setRefresh } = useContext(DataContext)
+
+
+
+    // Navigates users to dashboard if they are logged in
+    useEffect(() => {
+        if(access) navigate('/dashboard')
+    }, [access])
 
 
 
