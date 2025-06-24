@@ -1,10 +1,12 @@
-import { Box, Button, Container, Stack, styled, TextField, Typography } from "@mui/material"
+import { Box, Button, Card, Container, Dialog, Modal, Stack, styled, TextField, Typography } from "@mui/material"
 import HomeSection from "../HomeSection/HomeSection"
 import hero1 from "../../../../img/hero1.webp"
 import { useContext } from "react"
 import { DataContext } from "../../../../context/DataContext"
 import { useRef } from "react"
 import { useEffect } from "react"
+import { useState } from "react"
+import PopUp from "./components/PopUp/PopUp"
 
 const StyledContainer = styled(Container)(({theme})=>({
     width: "60%",
@@ -20,7 +22,7 @@ const StyledContainer = styled(Container)(({theme})=>({
 
 const Hero = () => {
     // Gets global data from the context
-    const { prompt, setPrompt } = useContext(DataContext)
+    const { prompt, setPrompt, navigate, access } = useContext(DataContext)
 
 
 
@@ -29,8 +31,25 @@ const Hero = () => {
 
 
 
+    // Navigates the users when they submit a prompt from the home page
+    const [modal, setModal] = useState(false)
+
+    const handleNavigate = () => {
+        setPrompt(inputRef.current.value)
+
+        if(access) navigate('dashboard')
+        else setModal(true)
+    }
+
+
+
     return (
         <HomeSection color="tertiary">
+            <PopUp
+                open={modal}
+                onClose={() => setModal(false)}
+            />
+
             <StyledContainer>
                 <img src={hero1} className="hero-img" />
 
@@ -49,7 +68,7 @@ const Hero = () => {
                         inputRef={inputRef}
                     />
 
-                    <Button onClick={() => setPrompt(inputRef.current.value)} variant="contained" color="tertiary">Analyze my mental health</Button>
+                    <Button onClick={handleNavigate} variant="contained" color="tertiary">Analyze my mental health</Button>
                 </Stack>
             </StyledContainer>
         </HomeSection>

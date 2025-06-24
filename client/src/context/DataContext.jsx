@@ -58,7 +58,7 @@ const DataProvider = ({ children }) => {
         <DataContext.Provider
             value={{
                 crud, navigate,
-                setAccess, setRefresh,
+                access, setAccess, setRefresh,
                 prompt, setPrompt
             }}
         >
