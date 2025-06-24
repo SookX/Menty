@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { DashboardContext } from "../../Dashboard"
-import { Box, Typography } from "@mui/material"
+import { Box, styled, Typography } from "@mui/material"
+import LineChart from "./components/LineChart/LineChart"
 
 const DataCard = () => {
     // Gets dashboard data from the context
@@ -13,9 +14,9 @@ const DataCard = () => {
             { user && user.username && <Typography variant="h3" color="primary">{user.username}</Typography> }
             { user && user.email && <Typography mb={1.5} variant="body1" textTransform="uppercase" fontWeight="bold" color="secondary.tint3">{user.email}</Typography> }
 
-            <Typography variant="body1">Welcome to your dashboard! Here you can find your mental health progress as well as your daily tips for improvement. The chart below shows your mental state over the last 30 days.</Typography>
+            <Typography mb={4} variant="body1">Welcome to your dashboard! Here you can find your mental health progress as well as your daily tips for improvement. The chart below shows your mental state over the last 30 days.</Typography>
 
-            <Box>Chart :{`(`}</Box>
+            <LineChart />
         </StyledCard>
     )
 }

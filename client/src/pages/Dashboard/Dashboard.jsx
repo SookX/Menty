@@ -32,6 +32,31 @@ const Dashboard = () => {
 
     // Holds the state for the dashboard
     const [user, setUser] = useState(null)
+    const [sentiments, setSentiments] = useState(null)
+    const [score, setScore] = useState(null)
+    const [anxiety, setAnxiety] = useState(null)
+    const [bipolar, setBipolar] = useState(null)
+    const [depression, setDepression] = useState(null)
+    const [personalityDisorder, setPersonalityDisorder] = useState(null)
+    const [stress, setStress] = useState(null)
+    const [suicidal, setSuicidal] = useState(null)
+    const [dates, setDates] = useState(null)
+
+
+
+    // Gets the scores from each sentiment
+    useEffect(() => {
+        if (sentiments) {
+            setScore(sentiments.map(sentiment => sentiment.normal_score))
+            setAnxiety(sentiments.map(sentiment => sentiment.anxiety_score))
+            setBipolar(sentiments.map(sentiment => sentiment.bipolar_score))
+            setDepression(sentiments.map(sentiment => sentiment.depression_score))
+            setPersonalityDisorder(sentiments.map(sentiment => sentiment.personality_disorder_score))
+            setStress(sentiments.map(sentiment => sentiment.stress_score))
+            setSuicidal(sentiments.map(sentiment => sentiment.suicidal_score))
+            setDates(sentiments.map((sentiment) => sentiment.date.split('T')[0]))
+        }
+    }, [sentiments])
 
 
 
@@ -47,7 +72,7 @@ const Dashboard = () => {
 
             if (response.status == 200) {
                 setUser(response.data.user)
-                // setSentiments(response.data.sentiments)
+                setSentiments(response.data.sentiments)
             }
         }
 
@@ -59,7 +84,8 @@ const Dashboard = () => {
     return (
         <DashboardContext.Provider value={{
             StyledCard,
-            user
+            user,
+            score, anxiety, bipolar, depression, suicidal, personalityDisorder, stress, dates
         }}>
             <Section>
                 <StyledGrid container rowGap={4} columnGap={6}>
