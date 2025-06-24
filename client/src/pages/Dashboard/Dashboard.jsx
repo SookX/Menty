@@ -91,7 +91,7 @@ const Dashboard = () => {
     return (
         <DashboardContext.Provider value={{
             StyledCard,
-            user,
+            user, sentiments,
             score, anxiety, bipolar, depression, suicidal, personalityDisorder, stress, dates
         }}>
             <Section>
