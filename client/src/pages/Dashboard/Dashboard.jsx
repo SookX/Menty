@@ -10,6 +10,7 @@ import AdviceCard from "./components/AdviceCard/AdviceCard"
 import { createContext } from "react"
 import './dashboard.css'
 import { useRef } from "react"
+import Loader from "./components/Loader/Loader"
 
 export const DashboardContext = createContext({  })
 
@@ -56,6 +57,16 @@ const Dashboard = () => {
     const [stress, setStress] = useState(null)
     const [suicidal, setSuicidal] = useState(null)
     const [dates, setDates] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+
+
+    // Changes the loading state when everything is loaded
+    useEffect(() => {
+        if (user && score && anxiety && depression && bipolar && personalityDisorder && stress && suicidal && dates) {
+            setLoading(false)
+        }
+    }, [user, score, anxiety, depression, bipolar, personalityDisorder, stress, suicidal, dates])
 
 
 
@@ -159,22 +170,27 @@ const Dashboard = () => {
             score, anxiety, bipolar, depression, suicidal, personalityDisorder, stress, dates,
             disabled, setDisabled, remainingTime, remainingString
         }}>
-            <Section>
-                <StyledGrid container rowSpacing={4} columnSpacing={6}>
-                    {
-                        user &&
-                        <Grid sx={{ display: "flex" }} size={{ xs: 12, lg: 7.2}}>
-                            <DataCard />
+            {
+                loading ?
+                <Loader />
+                :
+                <Section>
+                    <StyledGrid container rowSpacing={4} columnSpacing={6}>
+                        {
+                            user &&
+                            <Grid sx={{ display: "flex" }} size={{ xs: 12, lg: 7.2}}>
+                                <DataCard />
+                            </Grid>
+                        }
+                        <Grid sx={{ display: "flex" }} size={{ xs: 12, lg: 4.8}}>
+                            <PromptCard />
                         </Grid>
-                    }
-                    <Grid sx={{ display: "flex" }} size={{ xs: 12, lg: 4.8}}>
-                        <PromptCard />
-                    </Grid>
-                    <Grid sx={{ display: "flex" }} size={12}>
-                        <AdviceCard />
-                    </Grid>
-                </StyledGrid>
-            </Section>
+                        <Grid sx={{ display: "flex" }} size={12}>
+                            <AdviceCard />
+                        </Grid>
+                    </StyledGrid>
+                </Section>
+            }
         </DashboardContext.Provider>
     )
 }

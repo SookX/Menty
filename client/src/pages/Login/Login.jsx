@@ -4,6 +4,7 @@ import { Google } from "@mui/icons-material"
 import { DataContext } from "../../context/DataContext"
 import { useState } from "react"
 import { useEffect } from "react"
+import Loader from "../Dashboard/components/Loader/Loader"
 
 const Login = () => {
     // Gets global data from the context
@@ -22,12 +23,15 @@ const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(false)
 
 
 
     // Makes a crud request to the backend to register the user
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        setLoading(true)
         
         const response = await crud({
             method: 'post',
@@ -47,37 +51,42 @@ const Login = () => {
         } else {
             setError(response.response.data.error);
         }
+
+        setLoading(false)
     }
 
 
 
     return (
-        <AccountPage
-            title="Log in to your account"
-            errorMsg={error}
-            inputs={[
-                {
-                    label: "Email",
-                    type: "email",
-                    value: email,
-                    setValue: setEmail
-                },
-                {
-                    label: "Password",
-                    type: "password",
-                    value: password,
-                    setValue: setPassword
-                },
-            ]}
-            button="Log in to my account"
-            oauth={[
-                {
-                    label: "Log in with Google",
-                    icon: (<Google />)
-                }
-            ]}
-            handleSubmit={handleSubmit}
-        />
+        <>
+            { loading && <Loader /> }
+            <AccountPage
+                title="Log in to your account"
+                errorMsg={error}
+                inputs={[
+                    {
+                        label: "Email",
+                        type: "email",
+                        value: email,
+                        setValue: setEmail
+                    },
+                    {
+                        label: "Password",
+                        type: "password",
+                        value: password,
+                        setValue: setPassword
+                    },
+                ]}
+                button="Log in to my account"
+                oauth={[
+                    {
+                        label: "Log in with Google",
+                        icon: (<Google />)
+                    }
+                ]}
+                handleSubmit={handleSubmit}
+            />
+        </>
     )
 }
 

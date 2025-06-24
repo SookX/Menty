@@ -6,6 +6,8 @@ import { theme } from "../../../../theme/theme"
 import { DataContext } from "../../../../context/DataContext"
 import { useRef } from "react"
 import { useEffect } from "react"
+import { useState } from "react"
+import Loader from "../Loader/Loader"
 
 const PromptCard = () => {
     // Gets dashboard data from the context
@@ -37,8 +39,15 @@ const PromptCard = () => {
 
 
 
+    // Stores the loading state
+    const [loading, setLoading] = useState(false)
+
+
+
     // Makes a request to the backend with the new sentiment
     const handleSubmitSentiment = async () => {
+        setLoading(true)
+
         const response = await crud({
             method: "post",
             url: '/sentiment/',
@@ -53,34 +62,39 @@ const PromptCard = () => {
             remainingTime.current = time
             window.location.reload(false)
         }
+
+        setLoading(false)
     }
 
 
 
     return (
-        <StyledPromptCard>
-            <img src={dashboard} alt="girl" className="dashboard-img" />
+        <>
+            { loading && <Loader /> }
+            <StyledPromptCard>
+                <img src={dashboard} alt="girl" className="dashboard-img" />
 
-            <Box textAlign={"center"}>
-                <Typography variant="h5" color="secondary.tint3">How are you feeling today?</Typography>
-                {
-                    disabled ?
-                    <Typography variant="body1">You can write again in {remainingString.current}</Typography>
-                    :
-                    <Typography variant="body1">Tell us about your day. How are you feeling?</Typography>
-                }
-            </Box>
+                <Box textAlign={"center"}>
+                    <Typography variant="h5" color="secondary.tint3">How are you feeling today?</Typography>
+                    {
+                        disabled ?
+                        <Typography variant="body1">You can write again in {remainingString.current}</Typography>
+                        :
+                        <Typography variant="body1">Tell us about your day. How are you feeling?</Typography>
+                    }
+                </Box>
 
-            <TextField
-                color="tertiary"
-                fullWidth 
-                rows={7} 
-                multiline
-                inputRef={inputRef}
-                defaultValue={prompt}
-            />
-            <Button onClick={handleSubmitSentiment} disabled={disabled} variant="contained" fullWidth color="tertiary">Submit</Button>
-        </StyledPromptCard>
+                <TextField
+                    color="tertiary"
+                    fullWidth 
+                    rows={7} 
+                    multiline
+                    inputRef={inputRef}
+                    defaultValue={prompt}
+                />
+                <Button onClick={handleSubmitSentiment} disabled={disabled} variant="contained" fullWidth color="tertiary">Submit</Button>
+            </StyledPromptCard>
+        </>
     )
 }
 
