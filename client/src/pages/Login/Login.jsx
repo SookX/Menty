@@ -1,10 +1,11 @@
 import { useContext } from "react"
 import AccountPage from "../../components/AccountPage/AccountPage"
-import { Google } from "@mui/icons-material"
 import { DataContext } from "../../context/DataContext"
 import { useState } from "react"
 import { useEffect } from "react"
 import Loader from "../Dashboard/components/Loader/Loader"
+import { Stack, Typography } from "@mui/material"
+import { Google } from "@mui/icons-material";
 
 const Login = () => {
     // Gets global data from the context
@@ -78,12 +79,6 @@ const Login = () => {
                     },
                 ]}
                 button="Log in to my account"
-                oauth={[
-                    {
-                        label: "Log in with Google",
-                        icon: (<Google />)
-                    }
-                ]}
                 handleSubmit={handleSubmit}
             />
         </>

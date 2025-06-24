@@ -7,21 +7,26 @@ import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import DataProvider from './context/DataContext'
 import Dashboard from './pages/Dashboard/Dashboard'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 function App() {
+  const clientId = import.meta.env.VITE_GOOGLE_OAUTH2;
+
   return (
     <>
         <ThemeProvider theme={theme}>
 
           <BrowserRouter>
             <DataProvider>
-              <Header />
-              <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<Register />} />
-                <Route path='/dashboard' element={<Dashboard />} />
-              </Routes>
+              <GoogleOAuthProvider clientId={clientId}>
+                <Header />
+                <Routes>
+                  <Route path='/' element={<Home />} />
+                  <Route path='/login' element={<Login />} />
+                  <Route path='/register' element={<Register />} />
+                  <Route path='/dashboard' element={<Dashboard />} />
+                </Routes>
+              </GoogleOAuthProvider>
             </DataProvider>
           </BrowserRouter> 
         </ThemeProvider>    

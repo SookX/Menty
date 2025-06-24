@@ -93,14 +93,16 @@ const AccountPage = ({
 
                         {
                             oauth.map((oauth, i) => (
-                                <StyledButton
-                                    key={i}
-                                    variant="outlined"
-                                    color="primary"
-                                    startIcon={oauth.icon}
-                                >
-                                        {oauth.label}
-                                </StyledButton>
+                                oauth.component
+                                // <StyledButton
+                                //     key={i}
+                                //     variant="outlined"
+                                //     color="primary"
+                                //     startIcon={oauth.icon}
+                                //     onClick={oauth.onClick}
+                                // >
+                                //         {oauth.label}
+                                // </StyledButton>
                             ))
                         }
                     </>
