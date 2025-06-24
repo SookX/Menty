@@ -8,19 +8,22 @@ import DataCard from "./components/DataCard/DataCard"
 import PromptCard from "./components/PromptCard/PromptCard"
 import AdviceCard from "./components/AdviceCard/AdviceCard"
 import { createContext } from "react"
+import './dashboard.css'
 
 export const DashboardContext = createContext({  })
 
 const StyledGrid = styled(Grid)(({theme})=>({
     padding: "48px 64px",
-    paddingTop: "128px"
+    paddingTop: "128px",
+    alignItems: "stretch"
 }))
 
 const Dashboard = () => {
     // Holds the styles for each section
     const StyledCard = styled(Card)(({theme})=>({
         borderRadius: theme.shape.sectionBorderRadius,
-        padding: "40px"
+        padding: "40px",
+        // height: "100%"
     }))
 
 
@@ -88,14 +91,14 @@ const Dashboard = () => {
             score, anxiety, bipolar, depression, suicidal, personalityDisorder, stress, dates
         }}>
             <Section>
-                <StyledGrid container rowGap={4} columnGap={6}>
+                <StyledGrid container rowSpacing={4} columnSpacing={6}>
                     {
                         user &&
-                        <Grid size={8}>
+                        <Grid size={7.2}>
                             <DataCard />
                         </Grid>
                     }
-                    <Grid size={4}>
+                    <Grid size={4.8}>
                         <PromptCard />
                     </Grid>
                     <Grid size={"grow"}>
