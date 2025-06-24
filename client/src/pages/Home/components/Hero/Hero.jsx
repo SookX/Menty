@@ -14,16 +14,6 @@ const StyledContainer = styled(Container)(({theme})=>({
     textAlign: "center"
 }))
 
-const StyledButton = styled(Button)(({theme})=>({
-    background: theme.palette.tertiary.shade2,
-    "&:hover": {
-        background: "transparent",
-        border: "solid 1px",
-        borderColor: theme.palette.tertiary.shade2,
-        color: theme.palette.tertiary.shade2
-    }
-}))
-
 const Hero = () => {
     return (
         <HomeSection color="tertiary">
@@ -37,7 +27,7 @@ const Hero = () => {
                 <Stack gap={1} sx={{ width: { xs: "100%", lg: "90%" } }}>
                     <TextField variant="outlined" placeholder="Tell us how you're feeling..." color="tertiary" multiline rows={9} />
 
-                    <StyledButton variant="contained" color="tertiary">Analyze my mental health</StyledButton>
+                    <Button variant="contained" color="tertiary">Analyze my mental health</Button>
                 </Stack>
             </StyledContainer>
         </HomeSection>

@@ -39,18 +39,9 @@ export const theme = createTheme({
                     "&:hover": {
                         boxShadow: "none"
                     }
-                },
+                }
             }
         },
-        // MuiCard: {
-        //     styleOverrides: {
-        //         root: {
-        //             "&:hover": {
-        //                 transform: "scale(1.05)"
-        //             }
-        //         }
-        //     }
-        // },
         MuiLink: {
             styleOverrides: {
                 root: {
@@ -65,5 +56,26 @@ theme.typography.h1 = {
     ...theme.typography.h1,
     [theme.breakpoints.down("md")]: {
         fontSize: "48px"
+    }
+}
+
+theme.components.MuiButton.styleOverrides = {
+    ...theme.components.MuiButton.styleOverrides,
+    containedPrimary: {
+        "&:hover": {
+            background: "transparent",
+            border: "solid 1px",
+            borderColor: theme.palette.primary.main,
+            color: theme.palette.primary.main
+        }
+    },
+    containedTertiary: {
+        background: theme.palette.tertiary.shade2,
+        "&:hover": {
+            background: "transparent",
+            border: "solid 1px",
+            borderColor: theme.palette.tertiary.shade2,
+            color: theme.palette.tertiary.shade2
+        }
     }
 }
