@@ -14,6 +14,8 @@ export const DashboardContext = createContext({  })
 
 const StyledGrid = styled(Grid)(({theme})=>({
     padding: "48px 64px",
+    [theme.breakpoints.down("md")]: { padding: "48px 32px" },
+    [theme.breakpoints.down("sm")]: { padding: "32px 16px" },
     paddingTop: "128px",
     alignItems: "stretch"
 }))
@@ -23,7 +25,9 @@ const Dashboard = () => {
     const StyledCard = styled(Card)(({theme})=>({
         borderRadius: theme.shape.sectionBorderRadius,
         padding: "40px",
-        width: "100%"
+        width: "100%",
+
+        [theme.breakpoints.down("md")]: { textAlign: "center" }
     }))
 
 
@@ -94,14 +98,14 @@ const Dashboard = () => {
                 <StyledGrid container rowSpacing={4} columnSpacing={6}>
                     {
                         user &&
-                        <Grid sx={{ display: "flex" }} size={7.2}>
+                        <Grid sx={{ display: "flex" }} size={{ xs: 12, lg: 7.2}}>
                             <DataCard />
                         </Grid>
                     }
-                    <Grid sx={{ display: "flex" }} size={4.8}>
+                    <Grid sx={{ display: "flex" }} size={{ xs: 12, lg: 4.8}}>
                         <PromptCard />
                     </Grid>
-                    <Grid sx={{ display: "flex" }} size={"grow"}>
+                    <Grid sx={{ display: "flex" }} size={12}>
                         <AdviceCard />
                     </Grid>
                 </StyledGrid>

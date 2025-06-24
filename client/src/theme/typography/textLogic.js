@@ -15,7 +15,10 @@ const Text = {
         ...headingStyle,
         fontSize: "56px"
     },
-    h3: headingStyle,
+    h3: {
+        ...headingStyle,
+        fontSize: "48px"
+    },
     h4: headingStyle,
     h5: headingStyle,
     Link: {

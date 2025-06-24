@@ -59,6 +59,13 @@ theme.typography.h1 = {
     }
 }
 
+theme.typography.h3 = {
+    ...theme.typography.h3,
+    [theme.breakpoints.down("md")]: {
+        fontSize: "36px"
+    }
+}
+
 theme.components.MuiButton.styleOverrides = {
     ...theme.components.MuiButton.styleOverrides,
     containedPrimary: {
