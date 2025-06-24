@@ -15,8 +15,8 @@ const StepSection = () => {
         if(sentiments.length) {
             const currentDate = new Date().toISOString().split('T')[0]
 
-            // const current = sentiments.find(sentiment => sentiment.date.split('T')[0] === currentDate)?.help_text
-            const current = sentiments.find(sentiment => sentiment.date.split('T')[0] === "2024-09-29")?.help_text
+            const current = sentiments.find(sentiment => sentiment.date.split('T')[0] === currentDate)?.help_text
+            // const current = sentiments.find(sentiment => sentiment.date.split('T')[0] === "2024-09-29")?.help_text
 
             setText(current)
         }

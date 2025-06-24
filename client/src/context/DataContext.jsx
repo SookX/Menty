@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const DataContext = createContext({ })
 
@@ -46,11 +47,19 @@ const DataProvider = ({ children }) => {
         }
     }
 
+
+
+    // Holds the state for the prompt
+    const [prompt, setPrompt] = useState("")
+
+
+
     return (
         <DataContext.Provider
             value={{
                 crud, navigate,
-                setAccess, setRefresh
+                setAccess, setRefresh,
+                prompt, setPrompt
             }}
         >
             {children}

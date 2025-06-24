@@ -9,6 +9,7 @@ import PromptCard from "./components/PromptCard/PromptCard"
 import AdviceCard from "./components/AdviceCard/AdviceCard"
 import { createContext } from "react"
 import './dashboard.css'
+import { useRef } from "react"
 
 export const DashboardContext = createContext({  })
 
@@ -88,11 +89,68 @@ const Dashboard = () => {
 
 
 
+    // Stores the state of the submit button
+    const [disabled, setDisabled] = useState(false)
+
+    // Stores the remaining time till the button can be clicked again
+    const remainingTime = useRef(0)
+    const remainingString = useRef('')
+
+    // Stores the time for which the button will be disabled
+    const time = 86400000
+
+    // Calculates the remaining time if the button is disabled
+    useEffect(() => {
+        const lastClicked = localStorage.getItem('lastClicked');
+
+        if (lastClicked) {
+            const timeElapsed = new Date().getTime() - lastClicked;
+
+            if (timeElapsed < time) {
+                setDisabled(true);
+                remainingTime.current = time - timeElapsed
+            }
+        }
+    }, []);
+
+    // Get time string from the remaining time
+    const getRemainingTimeString = () => {
+        const hours = Math.floor((remainingTime.current / 3600000) % 24);
+        const minutes = Math.floor((remainingTime.current / 60000) % 60);
+        remainingString.current = `${hours} hour(s) and ${minutes} minute(s)`
+    }
+
+    // Start a countdown
+    useEffect(() => {
+        let timer;
+
+        if (disabled) {
+            timer = setInterval(() => {
+                if (remainingTime.current <= 1000) {
+                    clearInterval(timer)
+                    setDisabled(false)
+                    remainingTime.current = 0
+                }
+                else remainingTime.current = remainingTime.current - 1000
+                getRemainingTimeString()
+            }, 1000);
+        }
+
+        return () => clearInterval(timer)
+    }, [disabled]);
+
+    useEffect(() => {
+        getRemainingTimeString()
+    }, [remainingTime.current])
+
+
+
     return (
         <DashboardContext.Provider value={{
             StyledCard,
             user, sentiments,
-            score, anxiety, bipolar, depression, suicidal, personalityDisorder, stress, dates
+            score, anxiety, bipolar, depression, suicidal, personalityDisorder, stress, dates,
+            disabled, setDisabled, remainingTime, remainingString
         }}>
             <Section>
                 <StyledGrid container rowSpacing={4} columnSpacing={6}>

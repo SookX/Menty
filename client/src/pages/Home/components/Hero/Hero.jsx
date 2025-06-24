@@ -1,6 +1,10 @@
 import { Box, Button, Container, Stack, styled, TextField, Typography } from "@mui/material"
 import HomeSection from "../HomeSection/HomeSection"
 import hero1 from "../../../../img/hero1.webp"
+import { useContext } from "react"
+import { DataContext } from "../../../../context/DataContext"
+import { useRef } from "react"
+import { useEffect } from "react"
 
 const StyledContainer = styled(Container)(({theme})=>({
     width: "60%",
@@ -15,6 +19,25 @@ const StyledContainer = styled(Container)(({theme})=>({
 }))
 
 const Hero = () => {
+    // Gets global data from the context
+    const { prompt, setPrompt } = useContext(DataContext)
+
+
+
+    // Holds the reference for the input
+    const inputRef = useRef()
+
+    
+
+    // Sets the prompt on derender
+    useEffect(() => {
+        return () => {
+            setPrompt(inputRef.current.value)
+        }
+    }, [])
+
+
+
     return (
         <HomeSection color="tertiary">
             <StyledContainer>
@@ -25,7 +48,15 @@ const Hero = () => {
                 <Typography mb={4} variant="body1">We are here to help you! Use our tool to track your mental health and get daily advice to improve your life. Tell us how you are feeling today - your mood, your activities and our AI will analyze your state and track your mental health every day.</Typography>
 
                 <Stack gap={1} sx={{ width: { xs: "100%", lg: "90%" } }}>
-                    <TextField variant="outlined" placeholder="Tell us how you're feeling..." color="tertiary" multiline rows={9} />
+                    <TextField
+                        variant="outlined"
+                        placeholder="Tell us how you're feeling..."
+                        color="tertiary" 
+                        multiline 
+                        rows={9}
+                        defaultValue={prompt}
+                        inputRef={inputRef}
+                    />
 
                     <Button variant="contained" color="tertiary">Analyze my mental health</Button>
                 </Stack>
