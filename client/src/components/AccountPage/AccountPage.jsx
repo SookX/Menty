@@ -5,12 +5,15 @@ const StyledCard = styled(Card)(({theme})=>({
     textAlign: "center",
     
     width: "80%",
-    [theme.breakpoints.up("sm")]: { width: "70%" },
+    [theme.breakpoints.up("sm")]: { 
+        width: "70%",
+        padding: "48px"
+    },
     [theme.breakpoints.up("md")]: { width: "60%" },
     [theme.breakpoints.up("lg")]: { width: "40%" },
     
     margin: "0 auto",
-    padding: "48px",
+    padding: "24px",
     marginTop: "128px"
 }))
 
