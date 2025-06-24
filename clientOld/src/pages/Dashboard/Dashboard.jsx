@@ -71,8 +71,6 @@ const Dashboard = () => {
                 url: '/sentiment/'
             })
 
-            console.log(response)
-
             if (response.status == 200) {
                 setUser(response.data.user)
                 setSentiments(response.data.sentiments)
