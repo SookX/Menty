@@ -6,6 +6,7 @@ import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import DataProvider from './context/DataContext'
+import Dashboard from './pages/Dashboard/Dashboard'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
+                <Route path='/dashboard' element={<Dashboard />} />
               </Routes>
             </DataProvider>
           </BrowserRouter> 
