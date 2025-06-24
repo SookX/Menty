@@ -9,6 +9,8 @@ import Stack from "@mui/material/Stack"
 import { Link, Typography } from "@mui/material"
 import { HashLink } from 'react-router-hash-link'
 import { Link as ReactLink } from 'react-router-dom'
+import { useContext } from "react"
+import { DataContext } from "../../context/DataContext"
 
 const StyledNavlink = styled(Link)(({theme})=>({
     fontWeight: "bold",
@@ -27,21 +29,43 @@ const StyledToolbar = styled(Toolbar)({
 })
 
 const Header = () => {
+    // Gets global data from the context
+    const { access, setAccess, setRefresh, navigate } = useContext(DataContext)
+
+
+
+    // Deletes the authentication tokens of the user
+    const handleLogOut = () => {
+        localStorage.removeItem('access')
+        localStorage.removeItem('refresh')
+        setAccess(null)
+        setRefresh(null)
+        navigate('/login')
+    }
+
+
+
     return (
         <AppBar position="sticky" elevation={2} color="transparent">
             <StyledToolbar variant="dense" disableGutters>
                 <Stack direction={"row"} alignItems={"center"} gap={4}>
-                    <img src={logo} className="nav-logo" />
+                    <ReactLink to='/'><img src={logo} className="nav-logo" /></ReactLink>
 
-                    <Box>
+                    <Stack direction={"row"} gap={4}>
                         <StyledNavlink component={HashLink} to="/#about">How it works</StyledNavlink>
-                    </Box>
+                        { access && <StyledNavlink component={ReactLink} to="/dashboard">Dashboard</StyledNavlink> }
+                    </Stack>
                 </Stack>
 
-                <Stack direction={"row"} gap={4}>
-                    <StyledNavlink component={ReactLink} to="/login">Log in</StyledNavlink>
-                    <StyledNavlink component={ReactLink} to="/register">Sign up</StyledNavlink>
-                </Stack>
+                {
+                    access ?
+                    <StyledNavlink onClick={handleLogOut}>Log out</StyledNavlink>
+                    :
+                    <Stack direction={"row"} gap={4}>
+                        <StyledNavlink component={ReactLink} to="/login">Log in</StyledNavlink>
+                        <StyledNavlink component={ReactLink} to="/register">Sign up</StyledNavlink>
+                    </Stack>
+                }
             </StyledToolbar>
         </AppBar>
     )

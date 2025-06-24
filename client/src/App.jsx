@@ -14,8 +14,8 @@ function App() {
         <ThemeProvider theme={theme}>
 
           <BrowserRouter>
-            <Header />
             <DataProvider>
+              <Header />
               <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />
