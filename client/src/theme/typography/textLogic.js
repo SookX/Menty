@@ -11,7 +11,10 @@ const Text = {
             ...headingStyle,
             fontSize: "64px"
     },
-    h2: headingStyle,
+    h2: {
+        ...headingStyle,
+        fontSize: "56px"
+    },
     h3: headingStyle,
     h4: headingStyle,
     h5: headingStyle,

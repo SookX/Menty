@@ -60,3 +60,10 @@ export const theme = createTheme({
         }
     }
 })
+
+theme.typography.h1 = {
+    ...theme.typography.h1,
+    [theme.breakpoints.down("md")]: {
+        fontSize: "48px"
+    }
+}

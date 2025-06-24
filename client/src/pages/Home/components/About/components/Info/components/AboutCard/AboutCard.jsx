@@ -1,4 +1,4 @@
-import { Card, styled, Typography } from "@mui/material"
+import { Card, Grid, styled, Typography } from "@mui/material"
 
 const AboutCard = ({ 
     color = "primary",

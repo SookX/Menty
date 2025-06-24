@@ -1,15 +1,30 @@
-import { Box, Stack, Typography } from "@mui/material"
+import { Box, Stack, styled, Typography } from "@mui/material"
 import HomeSection from "../HomeSection/HomeSection"
 import about from "../../../../img/about.webp"
 import Info from "./components/Info/Info"
 
+const StyledStack = styled(Stack)(({ theme })=>({
+    [theme.breakpoints.up("lg")]: { 
+        flexDirection: "row",
+        gap: "24px"
+    },
+
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: "48px",
+
+    [theme.breakpoints.down("md")]: {
+        textAlign: "center"
+    }
+}))
+
 const About = () => {
     return (
         <HomeSection id="about" color="primary">
-            <Stack direction={"row"} justifyContent={"space-between"} gap={3} alignItems={"center"}>
+            <StyledStack>
                 <Info />
                 <img src={about} alt="Umbrella" className="about-img" />
-            </Stack>
+            </StyledStack>
         </HomeSection>
     )
 }
